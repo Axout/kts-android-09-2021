@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutId"
+    android:id="@+id/layoutOnboardId"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
+    android:background="@color/cardview_dark_background"
     tools:context=".OnboardFragment">
 
     <ImageView
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="@string/greeting_text"
         android:textSize="20sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/bt_onLoginFrag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
         android:id="@+id/bt_onLoginFrag"
         android:layout_width="187dp"
         android:layout_height="50dp"
-        android:text="@string/button"
+        android:text="@string/let_s_go"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
