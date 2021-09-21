@@ -24,19 +24,22 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.etEmailAddress.addTextChangedListener {
-            isValidEmail = Patterns.EMAIL_ADDRESS.matcher(binding.etEmailAddress.text).matches()
-//            Log.i("tag", "isValid = $isValid")
-            if (isValidEmail) {
-                binding.etEmailAddress.backgroundTintList = resources.getColorStateList(R.color.green)
+
+        with (binding.etEmailAddress) {
+            addTextChangedListener {
+                isValidEmail = Patterns.EMAIL_ADDRESS.matcher(text).matches()
+                if (isValidEmail) {
+                    backgroundTintList = resources.getColorStateList(R.color.green)
+                }
             }
         }
 
-        binding.etPassword.addTextChangedListener {
-            val isValidPassword = binding.etPassword.text.length >= 8
-            if (isValidPassword && isValidEmail) {
-                binding.etPassword.backgroundTintList = resources.getColorStateList(R.color.green)
-                binding.btLogin.isEnabled = true
+        with (binding.etPassword) {
+            addTextChangedListener {
+                if (text.length >= 8 && isValidEmail) {
+                    backgroundTintList = resources.getColorStateList(R.color.green)
+                    binding.btLogin.isEnabled = true
+                }
             }
         }
 

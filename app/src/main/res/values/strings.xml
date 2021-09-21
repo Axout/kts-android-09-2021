@@ -8,4 +8,9 @@
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="slogan">
+        TODAY YOU SHOULD DO\n
+        WHAT YOU LACKED COURAGE\n
+        FOR A LONG TIME!</string>
+    <string name="desc_photoRun" translatable="false">Photo of the runner</string>
 </resources>
