@@ -13,4 +13,5 @@
         WHAT YOU LACKED COURAGE\n
         FOR A LONG TIME!</string>
     <string name="desc_photoRun" translatable="false">Photo of the runner</string>
+    <string name="startCounter">0</string>
 </resources>
