@@ -3,23 +3,14 @@ package com.axout.kts_android_09_2021
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.axout.kts_android_09_2021.databinding.FragmentMainBinding
 import kotlin.random.Random
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(R.layout.fragment_main) {
 
-    private lateinit var binding: FragmentMainBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentMainBinding.inflate(inflater)
-        return binding.root
-    }
+    private val binding by viewBinding(FragmentMainBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.btAddPaints.setOnClickListener {

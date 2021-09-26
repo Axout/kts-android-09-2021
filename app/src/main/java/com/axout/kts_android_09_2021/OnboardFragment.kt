@@ -2,23 +2,14 @@ package com.axout.kts_android_09_2021
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.axout.kts_android_09_2021.databinding.FragmentOnboardBinding
 
-class OnboardFragment : Fragment() {
+class OnboardFragment : Fragment(R.layout.fragment_onboard) {
 
-    private lateinit var binding: FragmentOnboardBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentOnboardBinding.inflate(inflater)
-        return binding.root
-    }
+    private val binding by viewBinding(FragmentOnboardBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.btOnLoginFrag.setOnClickListener {
