@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/onboardFragment"
-        android:name="com.example.kts_android_09_2021.OnboardFragment"
+        android:name="com.axout.kts_android_09_2021.OnboardFragment"
         android:label="OnboardFragment"
         tools:layout="@layout/fragment_onboard">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.kts_android_09_2021.LoginFragment"
+        android:name="com.axout.kts_android_09_2021.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.kts_android_09_2021.MainFragment"
+        android:name="com.axout.kts_android_09_2021.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
 </navigation>
