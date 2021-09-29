@@ -3,4 +3,15 @@
     <string name="greeting_text">Yeah! You came again!</string>
     <string name="description">Welcome picture</string>
     <string name="button">Add paints</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="let_s_go">Let\'s go!</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="slogan">
+        TODAY YOU SHOULD DO\n
+        WHAT YOU LACKED COURAGE\n
+        FOR A LONG TIME!</string>
+    <string name="desc_photoRun" translatable="false">Photo of the runner</string>
+    <string name="desc_valid" translatable="false">Valid indicator</string>
 </resources>

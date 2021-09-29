@@ -3,4 +3,12 @@
     <string name="greeting_text">Ура! Ты снова пришёл!</string>
     <string name="description">Приветственная картинка</string>
     <string name="button">Добавить красок</string>
+    <string name="hello_blank_fragment">Привет фрагмент</string>
+    <string name="let_s_go">Погнали!</string>
+    <string name="login">Войти</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
+    <string name="slogan">
+        СЕГОДНЯ СЛЕДУЕТ СДЕЛАТЬ ТО,\n
+        НА ЧТО ДАВНО НЕ ХВАТАЛО СМЕЛОСТИ!</string>
 </resources>
