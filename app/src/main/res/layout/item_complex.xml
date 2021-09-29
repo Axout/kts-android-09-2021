@@ -16,7 +16,7 @@
         android:contentDescription="@string/desc_avatar"/>
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_authorComplex"
         android:text="@string/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
 
     <TextView
         android:id="@+id/tv_titleComplex"
-        android:text="@string/title_complex"
+        android:text="@string/complexTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"

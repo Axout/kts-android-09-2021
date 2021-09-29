@@ -16,9 +16,9 @@
     <string name="desc_valid" translatable="false">Valid indicator</string>
     <string name="photo_like" translatable="false">photo like</string>
     <string name="author">Vitaliy Nalivkin</string>
-    <string name="title_complex">Workout name</string>
+    <string name="complexTitle">Workout name</string>
     <string name="desc_avatar" translatable="false">avatar</string>
     <string name="desc_route" translatable="false">route</string>
-    <string name="title_text">Really important title</string>
+    <string name="simpleTitle">Really important title</string>
     <string name="votes">75 votes</string>
 </resources>

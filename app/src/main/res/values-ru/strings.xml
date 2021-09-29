@@ -12,7 +12,7 @@
         СЕГОДНЯ СЛЕДУЕТ СДЕЛАТЬ ТО,\n
         НА ЧТО ДАВНО НЕ ХВАТАЛО СМЕЛОСТИ!</string>
     <string name="author">Виталий Наливкин</string>
-    <string name="title_complex">Название тренировки</string>
-    <string name="title_text">Очень важный заголовок</string>
+    <string name="complexTitle">Название тренировки</string>
+    <string name="simpleTitle">Очень важный заголовок</string>
     <string name="votes">75 votes</string>
 </resources>
