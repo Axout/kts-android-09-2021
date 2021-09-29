@@ -12,7 +12,7 @@ class CounterViewModel: ViewModel() {
     val state: LiveData<ValidState>
         get() = mutableState
 
-    fun validation(email: String, password: String) {
+    fun validate(email: String, password: String) {
         val isValidEmail = Patterns.EMAIL_ADDRESS.matcher(email).matches()
         if (isValidEmail && password.length >= 8) {
             mutableState.value = ValidState(true)

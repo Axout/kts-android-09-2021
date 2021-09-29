@@ -17,14 +17,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.etEmailAddress.addTextChangedListener {
-            viewModel.validation(
+            viewModel.validate(
                 binding.etEmailAddress.text.toString(),
                 binding.etPassword.text.toString()
             )
         }
 
         binding.etPassword.addTextChangedListener {
-            viewModel.validation(
+            viewModel.validate(
                 binding.etEmailAddress.text.toString(),
                 binding.etPassword.text.toString()
             )
