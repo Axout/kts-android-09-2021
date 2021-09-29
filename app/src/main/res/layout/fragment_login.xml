@@ -11,29 +11,29 @@
     tools:context=".LoginFragment">
 
     <ImageView
-            android:id="@+id/iv_valid"
-            android:src="@android:drawable/presence_online"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/et_emailAddress"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:contentDescription="@string/desc_valid"/>
+        android:id="@+id/iv_valid"
+        android:src="@android:drawable/presence_online"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/et_emailAddress"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/desc_valid"/>
     <EditText
-            android:id="@+id/et_emailAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/email"
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/orange"
-            app:layout_constraintBottom_toTopOf="@+id/bt_login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/et_emailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/email"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/orange"
+        app:layout_constraintBottom_toTopOf="@+id/bt_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/et_password"

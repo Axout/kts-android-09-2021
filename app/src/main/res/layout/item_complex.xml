@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
-            android:id="@+id/iv_avatar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/avatar_m"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="8dp"
-            android:contentDescription="@string/desc_avatar"/>
+        android:id="@+id/iv_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/avatar_m"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/desc_avatar"/>
+
     <TextView
-            android:id="@+id/tv_name"
-            android:text="@string/author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_avatar"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"/>
+        android:id="@+id/tv_name"
+        android:text="@string/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"/>
+
     <TextView
-            android:id="@+id/tv_titleComplex"
-            android:text="@string/title_complex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
+        android:id="@+id/tv_titleComplex"
+        android:text="@string/title_complex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
     <ImageView
-            android:id="@+id/iv_photo"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:srcCompat="@drawable/route_2"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titleComplex"
-            android:layout_marginTop="10dp"
-            android:contentDescription="@string/desc_route"/>
+        android:id="@+id/iv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/route_2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titleComplex"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/desc_route"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
