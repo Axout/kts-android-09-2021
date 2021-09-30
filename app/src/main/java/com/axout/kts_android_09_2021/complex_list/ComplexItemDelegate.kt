@@ -32,16 +32,10 @@ class ComplexItemDelegate : AbsListItemAdapterDelegate<Any, Any, ComplexItemDele
 
         private var currentItem: ComplexItem? = null
 
-//        init {
-//            containerView.setOnClickListener { currentItem?.let(onItemClick) }
-//        }
-
         fun bind(item: ComplexItem) = with(containerView) {
             currentItem = item
             tv_authorComplex.text = item.author
             tv_titleComplex.text = item.title
-//            tv_emailComplex.text = "Email: ${item.email}"
-//            tv_uuidComplex.text = "Уникальный id: ${item.uuid}"
         }
     }
 }

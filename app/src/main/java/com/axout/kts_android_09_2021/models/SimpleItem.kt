@@ -5,6 +5,6 @@ import java.util.*
 data class SimpleItem(
     val author: String,
     val title: String,
-    val votes: Int,
+    var votes: Int,
     val uuid: UUID
 )

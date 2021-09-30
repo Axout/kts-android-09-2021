@@ -1,5 +1,6 @@
 package com.axout.kts_android_09_2021.complex_list
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,14 +37,21 @@ class SimpleItemDelegate(
         private var currentItem: SimpleItem? = null
 
         init {
-            containerView.setOnClickListener { currentItem?.let(onItemClick) }
+            containerView.iv_like.setOnClickListener {
+                val currentNumberOfVotes = currentItem?.votes
+                if (currentNumberOfVotes != null) {
+                    currentItem?.votes = currentNumberOfVotes + 1
+                    currentItem?.let(onItemClick)
+                    Log.d("like", "votes = ${currentItem?.votes}")
+                }
+            }
         }
 
         fun bind(item: SimpleItem) = with(containerView) {
             currentItem = item
             tv_author.text = item.author
             tv_title.text = item.title
-            tv_votes.text = item.votes.toString()
+            "${item.votes} votes".also { tv_votes.text = it }
         }
     }
 }

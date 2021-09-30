@@ -1,6 +1,7 @@
 package com.axout.kts_android_09_2021.complex_list
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.recyclerview.widget.DiffUtil
 import com.axout.kts_android_09_2021.models.ComplexItem
 import com.axout.kts_android_09_2021.models.SimpleItem
@@ -10,7 +11,7 @@ class ComplexDelegatesListAdapter : AsyncListDifferDelegationAdapter<Any>(Comple
 
     init {
         delegatesManager
-            .addDelegate(SimpleItemDelegate(::removeItem))
+            .addDelegate(SimpleItemDelegate(::setItem))
             .addDelegate(ComplexItemDelegate())
             .addDelegate(PageLoadingAdapterDelegate())
     }
@@ -20,7 +21,6 @@ class ComplexDelegatesListAdapter : AsyncListDifferDelegationAdapter<Any>(Comple
             return first.javaClass == second.javaClass && when (first) {
                 is SimpleItem -> first.uuid == (second as SimpleItem).uuid
                 is ComplexItem -> first.uuid == (second as ComplexItem).uuid
-//                is ImageItem -> first.id == (second as ImageItem).id
                 else -> true
             }
         }
@@ -29,9 +29,12 @@ class ComplexDelegatesListAdapter : AsyncListDifferDelegationAdapter<Any>(Comple
         override fun areContentsTheSame(first: Any, second: Any): Boolean = first == second
     }
 
-    private fun removeItem(item: Any) {
+    private fun setItem(item: Any) {
         val newItems = items.toMutableList().apply {
-            remove(item)
+            val position = indexOf(item)
+            Log.d("like", "position = $position")
+            set(position, item)
+            notifyItemChanged(position)
         }
         items = newItems
     }
