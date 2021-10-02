@@ -55,4 +55,5 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.0-alpha09"
     // Adapter delegates
     implementation 'com.hannesdorfmann:adapterdelegates4:4.3.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
