@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Strava</string>
+    <string name="app_name">Strunner</string>
     <string name="greeting_text">Ура! Ты снова пришёл!</string>
     <string name="description">Приветственная картинка</string>
     <string name="button">Добавить красок</string>
@@ -17,6 +17,7 @@
     <string name="votes">75 votes</string>
 
     <string name="image_loading_error">Проблема при загрузке изображения</string>
+    <string name="auth_canceled">Аутентификация не выполнена</string>
     <string-array name="onboard_names">
         <item>Следим за показателями как никто другой</item>
         <item>Социальная сеть для спортсменов</item>

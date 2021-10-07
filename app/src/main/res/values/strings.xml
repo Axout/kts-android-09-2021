@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Strava</string>
+    <string name="app_name">Strunner</string>
     <string name="greeting_text">Yeah! You came again!</string>
     <string name="description">Welcome picture</string>
     <string name="button">Add paints</string>
@@ -26,6 +26,7 @@
     <string name="onboard_image_path" translatable="false">onboard/%d.png</string>
     <string name="image_loading_error">Problem in loading image</string>
     <string name="onboard_imagine" translatable="false">onboard imagine</string>
+    <string name="auth_canceled">Authentication failed</string>
     <string-array name="onboard_names">
         <item>We monitor performance like no other</item>
         <item>Social network for athletes</item>

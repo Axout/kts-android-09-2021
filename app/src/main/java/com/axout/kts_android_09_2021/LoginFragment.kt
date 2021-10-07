@@ -31,7 +31,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         binding.btLogin.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
+            val action = LoginFragmentDirections.actionLoginFragmentToAuthFragment()
             findNavController().navigate(action)
         }
 
