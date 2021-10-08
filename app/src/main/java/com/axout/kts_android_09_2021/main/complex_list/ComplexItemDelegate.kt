@@ -1,11 +1,11 @@
-package com.axout.kts_android_09_2021.complex_list
+package com.axout.kts_android_09_2021.main.complex_list
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.axout.kts_android_09_2021.R
-import com.axout.kts_android_09_2021.models.ComplexItem
+import com.axout.kts_android_09_2021.main.models.ComplexItem
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_complex.view.*

@@ -1,4 +1,4 @@
-package com.axout.kts_android_09_2021.data.models
+package com.axout.kts_android_09_2021.networking.models
 
 import com.squareup.moshi.JsonClass
 

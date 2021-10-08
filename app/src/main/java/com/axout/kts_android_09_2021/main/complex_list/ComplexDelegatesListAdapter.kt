@@ -1,10 +1,10 @@
-package com.axout.kts_android_09_2021.complex_list
+package com.axout.kts_android_09_2021.main.complex_list
 
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.recyclerview.widget.DiffUtil
-import com.axout.kts_android_09_2021.models.ComplexItem
-import com.axout.kts_android_09_2021.models.SimpleItem
+import com.axout.kts_android_09_2021.main.models.ComplexItem
+import com.axout.kts_android_09_2021.main.models.SimpleItem
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
 class ComplexDelegatesListAdapter : AsyncListDifferDelegationAdapter<Any>(ComplexDiffCallback()) {

@@ -1,4 +1,4 @@
-package com.axout.kts_android_09_2021
+package com.axout.kts_android_09_2021.main
 
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.axout.kts_android_09_2021.complex_list.ComplexDelegatesListAdapter
+import com.axout.kts_android_09_2021.R
+import com.axout.kts_android_09_2021.main.complex_list.ComplexDelegatesListAdapter
 import com.axout.kts_android_09_2021.databinding.FragmentMainBinding
-import com.axout.kts_android_09_2021.models.ComplexItem
-import com.axout.kts_android_09_2021.models.LoadingItem
-import com.axout.kts_android_09_2021.models.SimpleItem
+import com.axout.kts_android_09_2021.main.models.ComplexItem
+import com.axout.kts_android_09_2021.main.models.LoadingItem
+import com.axout.kts_android_09_2021.main.models.SimpleItem
 import com.axout.kts_android_09_2021.utils.PaginationScrollListener
 import com.axout.kts_android_09_2021.utils.autoCleared
 import java.util.*

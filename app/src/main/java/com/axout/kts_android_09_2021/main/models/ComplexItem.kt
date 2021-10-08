@@ -1,4 +1,4 @@
-package com.axout.kts_android_09_2021.models
+package com.axout.kts_android_09_2021.main.models
 
 import java.util.*
 

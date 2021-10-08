@@ -1,6 +1,6 @@
-package com.axout.kts_android_09_2021.data
+package com.axout.kts_android_09_2021.networking
 
-import com.axout.kts_android_09_2021.data.auth.AddTokenHeaderInterceptor
+import com.axout.kts_android_09_2021.authorize.AddTokenHeaderInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

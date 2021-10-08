@@ -1,4 +1,4 @@
-package com.axout.kts_android_09_2021
+package com.axout.kts_android_09_2021.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,8 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.axout.kts_android_09_2021.CounterViewModel
+import com.axout.kts_android_09_2021.R
 import com.axout.kts_android_09_2021.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment(R.layout.fragment_login) {

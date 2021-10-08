@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/onboardFragment"
-        android:name="com.axout.kts_android_09_2021.OnboardFragment"
+        android:name="com.axout.kts_android_09_2021.onboarding.OnboardFragment"
         android:label="OnboardFragment"
         tools:layout="@layout/fragment_onboard">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.axout.kts_android_09_2021.LoginFragment"
+        android:name="com.axout.kts_android_09_2021.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action android:id="@+id/action_loginFragment_to_authFragment" app:destination="@id/authFragment"
@@ -29,10 +29,10 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.axout.kts_android_09_2021.MainFragment"
+        android:name="com.axout.kts_android_09_2021.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
-    <fragment android:id="@+id/authFragment" android:name="com.axout.kts_android_09_2021.AuthFragment"
+    <fragment android:id="@+id/authFragment" android:name="com.axout.kts_android_09_2021.authorize.AuthFragment"
               android:label="AuthFragment">
         <action android:id="@+id/action_authFragment_to_mainFragment" app:destination="@id/mainFragment"
                 app:popUpTo="@id/authFragment" app:popUpToInclusive="true"/>

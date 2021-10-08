@@ -1,6 +1,6 @@
-package com.axout.kts_android_09_2021.data
+package com.axout.kts_android_09_2021.networking
 
-import com.axout.kts_android_09_2021.data.models.AthleteActivity
+import com.axout.kts_android_09_2021.networking.models.AthleteActivity
 
 class AthleteActivitiesRepository {
 
