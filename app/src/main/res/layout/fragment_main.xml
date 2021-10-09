@@ -7,8 +7,8 @@
     tools:context=".main.MainFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
+        android:id="@+id/activitiesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_simple"/>
+        tools:listitem="@layout/item_activities"/>
 </FrameLayout>
