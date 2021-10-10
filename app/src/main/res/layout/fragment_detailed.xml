@@ -4,11 +4,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:context=".detailed.DetailedFragment">
 
     <ImageView
-        android:id="@+id/iv_avatar"
+        android:id="@+id/ivAvatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:srcCompat="@drawable/avatar_m"
@@ -18,35 +18,107 @@
         android:contentDescription="@string/desc_avatar"/>
 
     <TextView
-        android:id="@+id/tv_authorComplex"
+        android:id="@+id/tvAuthor"
         android:text="@string/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+        app:layout_constraintStart_toEndOf="@+id/ivAvatar"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"/>
 
     <TextView
-        android:id="@+id/tv_titleComplex"
+        android:id="@+id/tvActivityName"
         android:text="@string/complexTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/ivAvatar"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
 
     <ImageView
-        android:id="@+id/iv_photo"
+        android:id="@+id/ivPhoto"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         app:srcCompat="@drawable/route_2"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titleComplex"
+        app:layout_constraintTop_toBottomOf="@+id/tvActivityName"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/desc_route"/>
+
+    <TextView
+        android:text="Distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDistance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvTime"
+        app:layout_constraintTop_toBottomOf="@id/ivPhoto"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:text="Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTime"
+        app:layout_constraintStart_toEndOf="@id/tvDistance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivPhoto"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:text="AvgSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvAvgSpeed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvMaxSpeed"
+        app:layout_constraintTop_toBottomOf="@id/tvDistance"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:text="MaxSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvMaxSpeed"
+        app:layout_constraintStart_toEndOf="@id/tvAvgSpeed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTime"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:text="ElevationGain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvElevationGain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvMaxElevation"
+        app:layout_constraintTop_toBottomOf="@id/tvAvgSpeed"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:text="MaxElevation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvMaxElevation"
+        app:layout_constraintStart_toEndOf="@id/tvElevationGain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMaxSpeed"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

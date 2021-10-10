@@ -28,15 +28,19 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
     private fun bindViewModel() {
         viewModel.detailedActivity.observe(viewLifecycleOwner, Observer {
-            binding.tvTitleComplex.text = it.name
-            binding.tvAuthorComplex.text = it.distance.toString()
+            binding.tvActivityName.text = it.name
+            binding.tvDistance.text = it.distance.toString() + " m"
+            binding.tvTime.text = it.time.toString() + " s"
+            binding.tvAvgSpeed.text = it.avgSpeed.toString() + " m/s"
+            binding.tvMaxSpeed.text = it.maxSpeed.toString() + " m/s"
+            binding.tvElevationGain.text = it.elevationGain.toString() + " m"
+            binding.tvMaxElevation.text = it.maxElevation.toString() + " m"
 
-            //            coil, picasso
-//            Glide.with()
-//                .load(it.PhotosSummary.PhotosSummary_primary.urls)
-//                .transform(CircleCrop())
-//                .placeholder(R.drawable.route_2)
-//                .into(binding.ivPhoto)
+            Glide.with(this)
+                .load("https://dgtzuqphqg23d.cloudfront.net/suacqRl4BjBgq69pBkQvt5_qcYLee9KLMrC-7eZRbwQ-96x128.jpg")
+                .transform(CircleCrop())
+                .placeholder(R.drawable.route_2)
+                .into(binding.ivPhoto)
         })
     }
 }

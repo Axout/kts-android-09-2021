@@ -41,9 +41,9 @@ class AthleteActivityAdapterDelegate(
 
         fun bind(item: AthleteActivity) = with(containerView) {
             currentItem = item
-            "distance: ${item.distance} meters".also { tv_distance.text = it }
-            tv_name.text = item.name
-            tv_kudos.text = item.kudos.toString()
+            "distance: ${item.distance} meters".also { tvDistance.text = it }
+            tvName.text = item.name
+            tvKudos.text = item.kudos.toString()
         }
     }
 }
