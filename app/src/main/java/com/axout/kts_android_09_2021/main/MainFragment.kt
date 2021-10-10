@@ -1,6 +1,7 @@
 package com.axout.kts_android_09_2021.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -13,13 +14,14 @@ import com.axout.kts_android_09_2021.databinding.FragmentMainBinding
 import com.axout.kts_android_09_2021.utils.autoCleared
 import androidx.lifecycle.Observer
 import com.axout.kts_android_09_2021.networking.Parameters
+import androidx.navigation.fragment.findNavController
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val viewModel: AthleteActivitiesViewModel by viewModels()
 
     private val binding by viewBinding(FragmentMainBinding::bind)
-    private var athleteActivitiesAdapter: AthleteActivitiesAdapter by autoCleared()
+    private var athleteActivitiesAdapter: ComplexDelegatesListAdapter by autoCleared()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,7 +30,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun initList() {
-        athleteActivitiesAdapter = AthleteActivitiesAdapter()
+        athleteActivitiesAdapter = ComplexDelegatesListAdapter(
+            detailedActivity = { athleteActivity ->
+                // TODO send id of the activity
+                Log.d("tag", "activity id = ${athleteActivity.id}")
+                findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment())
+            }
+        )
+
         binding.activitiesList.apply {
             val orientation = RecyclerView.VERTICAL
             adapter = athleteActivitiesAdapter

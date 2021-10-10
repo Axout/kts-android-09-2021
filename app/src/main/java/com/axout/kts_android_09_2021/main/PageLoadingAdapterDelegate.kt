@@ -1,4 +1,4 @@
-package com.axout.kts_android_09_2021.main.complex_list
+package com.axout.kts_android_09_2021.main
 
 import android.view.LayoutInflater
 import android.view.View

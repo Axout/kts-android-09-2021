@@ -1,7 +1,9 @@
 package com.axout.kts_android_09_2021.networking
 
-import com.axout.kts_android_09_2021.networking.models.AthleteActivity
+import com.axout.kts_android_09_2021.main.models.AthleteActivity
+import com.axout.kts_android_09_2021.detailed.DetailedActivity
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface StravaApi {
@@ -10,4 +12,10 @@ interface StravaApi {
         @Query("before") before: Int,
         @Query("after") after: Int
     ): List<AthleteActivity>
+
+    @GET("activities/{id}")
+    suspend fun getActivityById(
+        @Path("id") id: Long,
+        @Query("include_all_efforts") include_all_efforts: Boolean
+    ): DetailedActivity
 }
