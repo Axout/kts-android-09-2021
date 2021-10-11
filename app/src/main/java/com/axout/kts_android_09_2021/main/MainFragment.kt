@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,10 +16,12 @@ import com.axout.kts_android_09_2021.utils.autoCleared
 import androidx.lifecycle.Observer
 import com.axout.kts_android_09_2021.networking.Parameters
 import androidx.navigation.fragment.findNavController
+import com.axout.kts_android_09_2021.main.models.DataModel
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val viewModel: AthleteActivitiesViewModel by viewModels()
+    private val dataModel: DataModel by activityViewModels()
 
     private val binding by viewBinding(FragmentMainBinding::bind)
     private var athleteActivitiesAdapter: ComplexDelegatesListAdapter by autoCleared()
@@ -32,7 +35,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun initList() {
         athleteActivitiesAdapter = ComplexDelegatesListAdapter(
             detailedActivity = { athleteActivity ->
-                // TODO send id of the activity
+                dataModel.activityID.value = athleteActivity.id
                 Log.d("tag", "activity id = ${athleteActivity.id}")
                 findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment())
             }
