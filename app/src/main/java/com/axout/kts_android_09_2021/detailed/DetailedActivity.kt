@@ -16,13 +16,25 @@ data class DetailedActivity(
     @Json(name = "total_elevation_gain")
     val elevationGain: Float,
     @Json(name = "elev_high")
-    val maxElevation: Float
-) {
-    inner class PhotosSummary(
-        val count: Int
-    ) {
-        inner class PhotosSummary_primary(
-            val urls: String
-        )
-    }
-}
+    val maxElevation: Float,
+    val photos: PhotosSummary
+)
+
+@JsonClass(generateAdapter = true)
+data class PhotosSummary(
+    val count: Int,
+    val primary: PhotosSummary_primary
+)
+
+@JsonClass(generateAdapter = true)
+data class PhotosSummary_primary(
+    val urls: Urls
+)
+
+@JsonClass(generateAdapter = true)
+data class Urls(
+    @Json(name = "100")
+    val small: String,
+    @Json(name = "600")
+    val big: String
+)

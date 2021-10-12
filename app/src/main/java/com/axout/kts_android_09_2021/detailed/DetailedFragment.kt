@@ -39,8 +39,10 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
             binding.tvElevationGain.text = it.elevationGain.toString() + " m"
             binding.tvMaxElevation.text = it.maxElevation.toString() + " m"
 
+            val urlPhoto = it.photos.primary.urls.big
+
             Glide.with(this)
-                .load("https://dgtzuqphqg23d.cloudfront.net/suacqRl4BjBgq69pBkQvt5_qcYLee9KLMrC-7eZRbwQ-96x128.jpg")
+                .load(urlPhoto)
                 .transform(CircleCrop())
                 .placeholder(R.drawable.route_2)
                 .into(binding.ivPhoto)
