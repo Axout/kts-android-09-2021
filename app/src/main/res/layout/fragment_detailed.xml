@@ -53,20 +53,32 @@
         android:text="Distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvDistance"
+        android:id="@+id/tvDistanceTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tvTime"
+        app:layout_constraintEnd_toStartOf="@id/tvTimeTitle"
         app:layout_constraintTop_toBottomOf="@id/ivPhoto"
         android:layout_margin="10dp"
         android:textColor="@color/black"
         android:textSize="18sp"/>
 
     <TextView
+        android:text="5000 m"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDistance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvTime"
+        app:layout_constraintTop_toBottomOf="@id/tvDistanceTitle"
+        android:layout_margin="10dp"
+        android:textColor="@color/orange"
+        android:textSize="15sp"/>
+
+    <TextView
         android:text="Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvTime"
-        app:layout_constraintStart_toEndOf="@id/tvDistance"
+        android:id="@+id/tvTimeTitle"
+        app:layout_constraintStart_toEndOf="@id/tvDistanceTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivPhoto"
         android:layout_margin="10dp"
@@ -74,23 +86,47 @@
         android:textSize="18sp"/>
 
     <TextView
+        android:text="1200 s"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTime"
+        app:layout_constraintStart_toEndOf="@id/tvDistance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeTitle"
+        android:layout_margin="10dp"
+        android:textColor="@color/orange"
+        android:textSize="15sp"/>
+
+    <TextView
         android:text="AvgSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvAvgSpeed"
+        android:id="@+id/tvAvgSpeedTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tvMaxSpeed"
+        app:layout_constraintEnd_toStartOf="@id/tvMaxSpeedTitle"
         app:layout_constraintTop_toBottomOf="@id/tvDistance"
         android:layout_margin="10dp"
         android:textColor="@color/black"
         android:textSize="18sp"/>
 
     <TextView
+        android:text="4 m/s"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvAvgSpeed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvMaxSpeed"
+        app:layout_constraintTop_toBottomOf="@id/tvAvgSpeedTitle"
+        android:layout_margin="10dp"
+        android:textColor="@color/orange"
+        android:textSize="15sp"/>
+
+    <TextView
         android:text="MaxSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMaxSpeed"
-        app:layout_constraintStart_toEndOf="@id/tvAvgSpeed"
+        android:id="@+id/tvMaxSpeedTitle"
+        app:layout_constraintStart_toEndOf="@id/tvAvgSpeedTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTime"
         android:layout_margin="10dp"
@@ -98,27 +134,63 @@
         android:textSize="18sp"/>
 
     <TextView
+        android:text="6 m/s"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvMaxSpeed"
+        app:layout_constraintStart_toEndOf="@id/tvAvgSpeed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMaxSpeedTitle"
+        android:layout_margin="10dp"
+        android:textColor="@color/orange"
+        android:textSize="15sp"/>
+
+    <TextView
         android:text="ElevationGain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvElevationGain"
+        android:id="@+id/tvElevationGainTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tvMaxElevation"
+        app:layout_constraintEnd_toStartOf="@id/tvMaxElevationTitle"
         app:layout_constraintTop_toBottomOf="@id/tvAvgSpeed"
         android:layout_margin="10dp"
         android:textColor="@color/black"
         android:textSize="18sp"/>
 
     <TextView
+        android:text="50 m"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvElevationGain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvMaxElevation"
+        app:layout_constraintTop_toBottomOf="@id/tvElevationGainTitle"
+        android:layout_margin="10dp"
+        android:textColor="@color/orange"
+        android:textSize="15sp"/>
+
+    <TextView
         android:text="MaxElevation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMaxElevation"
-        app:layout_constraintStart_toEndOf="@id/tvElevationGain"
+        android:id="@+id/tvMaxElevationTitle"
+        app:layout_constraintStart_toEndOf="@id/tvElevationGainTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMaxSpeed"
         android:layout_margin="10dp"
         android:textColor="@color/black"
         android:textSize="18sp"/>
+
+    <TextView
+        android:text="120 m"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvMaxElevation"
+        app:layout_constraintStart_toEndOf="@id/tvElevationGain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMaxElevationTitle"
+        android:layout_margin="10dp"
+        android:textColor="@color/orange"
+        android:textSize="15sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
