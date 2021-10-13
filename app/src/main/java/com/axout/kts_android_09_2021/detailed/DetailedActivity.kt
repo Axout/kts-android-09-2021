@@ -34,7 +34,7 @@ data class PhotosSummary_primary(
 @JsonClass(generateAdapter = true)
 data class Urls(
     @Json(name = "100")
-    val small: String,
+    val smallPhoto: String,
     @Json(name = "600")
-    val big: String
+    val bigPhoto: String
 )

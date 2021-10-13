@@ -23,23 +23,21 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        Log.d("tag", "activityID = ${dataModel.activityID.value}")
-        dataModel.activityID.value?.let { viewModel.getActivityById(id = it, include_all_efforts = true) }
+        getDataForViewModel()
         bindViewModel()
     }
 
     private fun bindViewModel() {
-        viewModel.detailedActivity.observe(viewLifecycleOwner, Observer {
-            binding.tvActivityName.text = it.name
-            binding.tvDistance.text = it.distance.toString() + " m"
-            binding.tvTime.text = it.time.toString() + " s"
-            binding.tvAvgSpeed.text = it.avgSpeed.toString() + " m/s"
-            binding.tvMaxSpeed.text = it.maxSpeed.toString() + " m/s"
-            binding.tvElevationGain.text = it.elevationGain.toString() + " m"
-            binding.tvMaxElevation.text = it.maxElevation.toString() + " m"
+        viewModel.detailedActivity.observe(viewLifecycleOwner, Observer { detailedActivity ->
+            binding.tvActivityName.text = detailedActivity.name
+            (detailedActivity.distance.toString() + " m").also { binding.tvDistance.text = it }
+            (detailedActivity.time.toString() + " s").also { binding.tvTime.text = it }
+            (detailedActivity.avgSpeed.toString() + " m/s").also { binding.tvAvgSpeed.text = it }
+            (detailedActivity.maxSpeed.toString() + " m/s").also { binding.tvMaxSpeed.text = it }
+            (detailedActivity.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
+            (detailedActivity.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
 
-            val urlPhoto = it.photos.primary.urls.big
+            val urlPhoto = detailedActivity.photos.primary.urls.bigPhoto
 
             Glide.with(this)
                 .load(urlPhoto)
@@ -47,5 +45,9 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
                 .placeholder(R.drawable.route_2)
                 .into(binding.ivPhoto)
         })
+    }
+
+    private fun getDataForViewModel() {
+        dataModel.activityID.value?.let { viewModel.getActivityById(id = it, include_all_efforts = true) }
     }
 }
