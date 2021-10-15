@@ -8,11 +8,6 @@
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="slogan">
-        TODAY YOU SHOULD DO\n
-        WHAT YOU LACKED COURAGE\n
-        FOR A LONG TIME!
-    </string>
     <string name="desc_photoRun" translatable="false">Photo of the runner</string>
     <string name="desc_valid" translatable="false">Valid indicator</string>
     <string name="photo_like" translatable="false">photo like</string>
@@ -27,6 +22,18 @@
     <string name="image_loading_error">Problem in loading image</string>
     <string name="onboard_imagine" translatable="false">onboard imagine</string>
     <string name="auth_canceled">Authentication failed</string>
+    <string name="distance">Distance</string>
+    <string name="distance_example" translatable="false">5000 m</string>
+    <string name="time">Time</string>
+    <string name="time_example" translatable="false">00:20:31</string>
+    <string name="avg_speed">Avg. speed</string>
+    <string name="avg_speed_ex" translatable="false">4 m/s</string>
+    <string name="max_speed">Max. speed</string>
+    <string name="max_speed_ex" translatable="false">6 m/s</string>
+    <string name="elevation_gain">Elevation gain</string>
+    <string name="elev_gain_ex" translatable="false">50 m</string>
+    <string name="max_elevation">Max. elevation</string>
+    <string name="max_elev_ex" translatable="false">120 m</string>
     <string-array name="onboard_names">
         <item>We monitor performance like no other</item>
         <item>Social network for athletes</item>

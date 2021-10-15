@@ -8,9 +8,6 @@
     <string name="login">Войти</string>
     <string name="email">Почта</string>
     <string name="password">Пароль</string>
-    <string name="slogan">
-        СЕГОДНЯ СЛЕДУЕТ СДЕЛАТЬ ТО,\n
-        НА ЧТО ДАВНО НЕ ХВАТАЛО СМЕЛОСТИ!</string>
     <string name="author">Виталий Наливкин</string>
     <string name="complexTitle">Название тренировки</string>
     <string name="simpleTitle">Очень важный заголовок</string>
@@ -18,6 +15,12 @@
 
     <string name="image_loading_error">Проблема при загрузке изображения</string>
     <string name="auth_canceled">Аутентификация не выполнена</string>
+    <string name="distance">Расстояние</string>
+    <string name="time">Время</string>
+    <string name="avg_speed">Средняя скорость</string>
+    <string name="max_speed">Макс. скорость</string>
+    <string name="elevation_gain">Набор высоты</string>
+    <string name="max_elevation">Макс. высота</string>
     <string-array name="onboard_names">
         <item>Следим за показателями как никто другой</item>
         <item>Социальная сеть для спортсменов</item>

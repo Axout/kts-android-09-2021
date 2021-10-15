@@ -23,12 +23,12 @@ data class DetailedActivity(
 @JsonClass(generateAdapter = true)
 data class PhotosSummary(
     val count: Int,
-    val primary: PhotosSummary_primary
+    val primary: PhotosSummary_primary?
 )
 
 @JsonClass(generateAdapter = true)
 data class PhotosSummary_primary(
-    val urls: Urls
+    val urls: Urls?
 )
 
 @JsonClass(generateAdapter = true)

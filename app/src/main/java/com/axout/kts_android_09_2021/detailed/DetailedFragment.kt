@@ -30,14 +30,14 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
     private fun bindViewModel() {
         viewModel.detailedActivity.observe(viewLifecycleOwner, Observer { detailedActivity ->
             binding.tvActivityName.text = detailedActivity.name
-            (detailedActivity.distance.toString() + " m").also { binding.tvDistance.text = it }
-            (detailedActivity.time.toString() + " s").also { binding.tvTime.text = it }
+            binding.tvDistance.text = convertDistance(detailedActivity.distance)
+            binding.tvTime.text = convertTime(detailedActivity.time)
             (detailedActivity.avgSpeed.toString() + " m/s").also { binding.tvAvgSpeed.text = it }
             (detailedActivity.maxSpeed.toString() + " m/s").also { binding.tvMaxSpeed.text = it }
             (detailedActivity.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
             (detailedActivity.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
 
-            val urlPhoto = detailedActivity.photos.primary.urls.bigPhoto
+            val urlPhoto = detailedActivity.photos.primary?.urls?.bigPhoto
 
             Glide.with(this)
                 .load(urlPhoto)
@@ -47,7 +47,18 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
         })
     }
 
+    private fun convertDistance(distance: Float): String {
+        return String.format("%.2f km", distance / 1000)
+    }
+
     private fun getDataForViewModel() {
         dataModel.activityID.value?.let { viewModel.getActivityById(id = it, include_all_efforts = true) }
+    }
+
+    private fun convertTime(totalSecs: Int): String {
+        val hours = totalSecs / 3600
+        val minutes = (totalSecs % 3600) / 60
+        val seconds = totalSecs % 60
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds)
     }
 }

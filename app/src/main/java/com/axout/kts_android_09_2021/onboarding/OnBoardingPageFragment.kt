@@ -37,7 +37,7 @@ class OnBoardingPageFragment : Fragment(R.layout.fragment_onboarding) {
         if (position == onboardNamesArray.size - 1) {
             bt_onLoginFrag.visibility = View.VISIBLE
             bt_onLoginFrag.setOnClickListener {
-                val action = OnboardFragmentDirections.actionOnboardFragmentToLoginFragment()
+                val action = OnboardFragmentDirections.actionOnboardFragmentToAuthFragment()
                 findNavController().navigate(action)
             }
         }

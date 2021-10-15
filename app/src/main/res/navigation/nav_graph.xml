@@ -11,11 +11,8 @@
         android:name="com.axout.kts_android_09_2021.onboarding.OnboardFragment"
         android:label="OnboardFragment"
         tools:layout="@layout/fragment_onboard">
-        <action
-            android:id="@+id/action_onboardFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/onboardFragment"
-            app:popUpToInclusive="true" />
+        <action android:id="@+id/action_onboardFragment_to_authFragment" app:destination="@id/authFragment"
+                app:popUpTo="@id/onboardFragment" app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
