@@ -13,17 +13,17 @@ import com.axout.kts_android_09_2021.R
 import kotlinx.android.synthetic.main.fr_onboarding.*
 import java.io.IOException
 
-class OnboardingFr : Fragment(R.layout.fr_onboarding) {
+class OnBoardingPageFragment : Fragment(R.layout.fr_onboarding) {
 
     companion object {
         const val ARG_POSITION = "position"
 
         fun getInstance(position: Int): Fragment {
-            val onboardingFr = OnboardingFr()
+            val onBoardingPageFragment = OnBoardingPageFragment()
             val bundle = Bundle()
             bundle.putInt(ARG_POSITION, position)
-            onboardingFr.arguments = bundle
-            return onboardingFr
+            onBoardingPageFragment.arguments = bundle
+            return onBoardingPageFragment
         }
     }
 
@@ -54,9 +54,10 @@ class OnboardingFr : Fragment(R.layout.fr_onboarding) {
         val assets = context.resources.assets
         try {
             val fileStream = assets.open(filePath)
-            imageBitmap = BitmapFactory.decodeStream(fileStream)
-            fileStream.close()
-            iv_onboarding.setImageBitmap(imageBitmap)
+            fileStream.use { // use - закрывает stream после выполнения блока кода
+                imageBitmap = BitmapFactory.decodeStream(fileStream)
+                iv_onboarding.setImageBitmap(imageBitmap)
+            }
         } catch (e: IOException) {
             e.printStackTrace()
             Toast.makeText(context, getString(R.string.image_loading_error), Toast.LENGTH_SHORT).show()

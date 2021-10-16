@@ -12,13 +12,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 class OnboardFragment : Fragment(R.layout.fragment_onboard) {
 
     private val binding by viewBinding(FragmentOnboardBinding::bind)
-    private lateinit var onboardNamesArray: Array<String>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        onboardNamesArray = resources.getStringArray(R.array.onboard_names)
-
-        val onboardAdapter = OnboardAdapter(activity as AppCompatActivity, onboardNamesArray.size)
+        val onboardAdapter = OnboardAdapter(activity as AppCompatActivity, resources.getStringArray(R.array.onboard_names).size)
         binding.onboardViewPager.adapter = onboardAdapter
 
         TabLayoutMediator(binding.tabLayout, binding.onboardViewPager) { tab, position ->
