@@ -11,7 +11,8 @@ open class DataModel : ViewModel() {
     При повторном создании класса DataModel будет использоваться то,
     что уже было создано после фигурных скобок.
      */
-    val activityID: MutableLiveData<Long> by lazy {
-        MutableLiveData<Long>()
-    }
+    val activityID: MutableLiveData<Long> by lazy { MutableLiveData<Long>() }
+    val firstname: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val lastname: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val profile: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 }

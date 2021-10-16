@@ -23,12 +23,15 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getDataForViewModel()
         bindViewModel()
     }
 
     private fun bindViewModel() {
+
+        dataModel.activityID.value?.let { viewModel.getActivityById(id = it, include_all_efforts = true) }
+
         viewModel.detailedActivity.observe(viewLifecycleOwner, Observer { detailedActivity ->
+            (dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
             binding.progress.isVisible = false
             binding.tvActivityName.text = detailedActivity.name
             binding.tvDistance.text = convertDistance(detailedActivity.distance)
@@ -38,18 +41,18 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
             (detailedActivity.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
             (detailedActivity.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
 
-            val urlPhoto = detailedActivity.photos.primary?.urls?.bigPhoto
+            Glide.with(this)
+                .load(dataModel.profile.value)
+                .transform(CircleCrop())
+                .placeholder(R.drawable.avatar_m)
+                .into(binding.ivAvatar)
 
             Glide.with(this)
-                .load(urlPhoto)
+                .load(detailedActivity.photos.primary?.urls?.bigPhoto)
                 .transform(CircleCrop())
                 .placeholder(R.drawable.route_2)
                 .into(binding.ivPhoto)
         })
-    }
-
-    private fun getDataForViewModel() {
-        dataModel.activityID.value?.let { viewModel.getActivityById(id = it, include_all_efforts = true) }
     }
 
     private fun convertDistance(distance: Float): String {

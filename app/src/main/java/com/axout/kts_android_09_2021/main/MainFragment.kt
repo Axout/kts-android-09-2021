@@ -21,6 +21,7 @@ import com.axout.kts_android_09_2021.main.models.DataModel
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val viewModel: AthleteActivitiesViewModel by viewModels()
+    private val viewModelAthlete: DetailedAthleteViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
 
     private val binding by viewBinding(FragmentMainBinding::bind)
@@ -53,11 +54,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun bindViewModel() {
         viewModel.athleteActivitiesList.observe(viewLifecycleOwner, Observer { athleteActivitiesAdapter.items = it })
-        viewModel.isLoading.observe(viewLifecycleOwner, Observer { enableControls(it.not()) })
         viewModel.getListActivities(before = Parameters.BEFORE, after = Parameters.AFTER)
-    }
 
-    private fun enableControls(enable: Boolean) = with(binding) {
-
+        viewModelAthlete.getLoggedInAthlete()
+        viewModelAthlete.detailedAthlete.observe(viewLifecycleOwner, Observer {
+            dataModel.firstname.value = it.firstname
+            dataModel.lastname.value = it.lastname
+            dataModel.profile.value = it.profile
+        })
     }
 }
