@@ -8,7 +8,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.axout.kts_android_09_2021.R
-import com.axout.kts_android_09_2021.authorize.AuthRepository
 import com.axout.kts_android_09_2021.utils.SingleLiveEvent
 import net.openid.appauth.AuthorizationException
 import net.openid.appauth.AuthorizationService

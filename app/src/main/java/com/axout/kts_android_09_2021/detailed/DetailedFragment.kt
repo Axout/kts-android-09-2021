@@ -1,7 +1,6 @@
 package com.axout.kts_android_09_2021.detailed
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -47,12 +46,12 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
         })
     }
 
-    private fun convertDistance(distance: Float): String {
-        return String.format("%.2f km", distance / 1000)
-    }
-
     private fun getDataForViewModel() {
         dataModel.activityID.value?.let { viewModel.getActivityById(id = it, include_all_efforts = true) }
+    }
+
+    private fun convertDistance(distance: Float): String {
+        return String.format("%.2f km", distance / 1000)
     }
 
     private fun convertTime(totalSecs: Int): String {

@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.axout.kts_android_09_2021.main.models.AthleteActivity
 import com.axout.kts_android_09_2021.networking.DetailedActivityRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
