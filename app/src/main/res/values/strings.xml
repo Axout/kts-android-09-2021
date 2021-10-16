@@ -11,7 +11,25 @@
     <string name="slogan">
         TODAY YOU SHOULD DO\n
         WHAT YOU LACKED COURAGE\n
-        FOR A LONG TIME!</string>
+        FOR A LONG TIME!
+    </string>
     <string name="desc_photoRun" translatable="false">Photo of the runner</string>
     <string name="desc_valid" translatable="false">Valid indicator</string>
+    <string name="photo_like" translatable="false">photo like</string>
+    <string name="author">Vitaliy Nalivkin</string>
+    <string name="complexTitle">Workout name</string>
+    <string name="desc_avatar" translatable="false">avatar</string>
+    <string name="desc_route" translatable="false">route</string>
+    <string name="simpleTitle">Really important title</string>
+    <string name="votes">75 votes</string>
+
+    <string name="onboard_image_path" translatable="false">onboard/%d.png</string>
+    <string name="image_loading_error">Problem in loading image</string>
+    <string name="onboard_imagine" translatable="false">onboard imagine</string>
+    <string-array name="onboard_names">
+        <item>We monitor performance like no other</item>
+        <item>Social network for athletes</item>
+        <item>Share your location with your friends</item>
+        <item>Set new records on your territory</item>
+    </string-array>
 </resources>
