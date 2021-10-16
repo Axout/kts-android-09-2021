@@ -2,6 +2,7 @@ package com.axout.kts_android_09_2021.detailed
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -28,6 +29,7 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
     private fun bindViewModel() {
         viewModel.detailedActivity.observe(viewLifecycleOwner, Observer { detailedActivity ->
+            binding.progress.isVisible = false
             binding.tvActivityName.text = detailedActivity.name
             binding.tvDistance.text = convertDistance(detailedActivity.distance)
             binding.tvTime.text = convertTime(detailedActivity.time)

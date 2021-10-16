@@ -8,7 +8,7 @@
     <string name="login">Войти</string>
     <string name="email">Почта</string>
     <string name="password">Пароль</string>
-    <string name="author">Виталий Наливкин</string>
+    <string name="author">Имя атлета</string>
     <string name="complexTitle">Название тренировки</string>
     <string name="simpleTitle">Очень важный заголовок</string>
     <string name="votes">75 votes</string>

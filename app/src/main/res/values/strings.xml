@@ -11,7 +11,7 @@
     <string name="desc_photoRun" translatable="false">Photo of the runner</string>
     <string name="desc_valid" translatable="false">Valid indicator</string>
     <string name="photo_like" translatable="false">photo like</string>
-    <string name="author">Vitaliy Nalivkin</string>
+    <string name="author">Athlete name</string>
     <string name="complexTitle">Workout name</string>
     <string name="desc_avatar" translatable="false">avatar</string>
     <string name="desc_route" translatable="false">route</string>
@@ -34,6 +34,7 @@
     <string name="elev_gain_ex" translatable="false">50 m</string>
     <string name="max_elevation">Max. elevation</string>
     <string name="max_elev_ex" translatable="false">120 m</string>
+    <string name="plug" translatable="false">-----</string>
     <string-array name="onboard_names">
         <item>We monitor performance like no other</item>
         <item>Social network for athletes</item>
