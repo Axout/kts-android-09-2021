@@ -39,7 +39,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     }
 
     private fun bindViewModel() {
-        binding.btAuthorize.setOnClickListener { viewModel.openLoginPage() }
+        viewModel.openLoginPage()
         viewModel.loadingLiveData.observe(viewLifecycleOwner, ::updateIsLoading)
         viewModel.openAuthPageLiveData.observe(viewLifecycleOwner, ::openAuthPage)
         viewModel.toastLiveData.observe(viewLifecycleOwner, ::toast)
@@ -49,7 +49,6 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     }
 
     private fun updateIsLoading(isLoading: Boolean) = with(binding) {
-        btAuthorize.isVisible = !isLoading
         loginProgress.isVisible = isLoading
     }
 
