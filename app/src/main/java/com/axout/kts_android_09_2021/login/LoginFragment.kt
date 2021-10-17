@@ -33,8 +33,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         binding.btLogin.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToAuthFragment()
-            findNavController().navigate(action)
+//            val action = LoginFragmentDirections.actionLoginFragmentToAuthFragment()
+//            findNavController().navigate(action)
         }
 
         viewModel.state.observe(this) { state ->
