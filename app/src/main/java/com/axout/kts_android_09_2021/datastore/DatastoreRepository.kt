@@ -23,10 +23,10 @@ class DatastoreRepository(
         }
     }
 
-    fun observe(): Flow<Boolean> {
+    fun observe(): Flow<Boolean?> {
         return dataStore.data
             .map {
-                it[KEY] == false
+                it[KEY]
             }
     }
 

@@ -12,7 +12,7 @@ class DatastoreViewModel(
 
     private val repository = DatastoreRepository(application)
 
-    val firstStartLiveData: Flow<Boolean>
+    val firstStartLiveData: Flow<Boolean?>
         get() = repository.observe()
 
     fun save(firstStart: Boolean) {
