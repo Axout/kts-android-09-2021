@@ -8,12 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.axout.kts_android_09_2021.OnboardFragmentDirections
 import com.axout.kts_android_09_2021.R
-import kotlinx.android.synthetic.main.fr_onboarding.*
+import kotlinx.android.synthetic.main.fragment_onboarding.*
 import java.io.IOException
 
-class OnBoardingPageFragment : Fragment(R.layout.fr_onboarding) {
+class OnBoardingPageFragment : Fragment(R.layout.fragment_onboarding) {
 
     companion object {
         const val ARG_POSITION = "position"
@@ -38,7 +37,7 @@ class OnBoardingPageFragment : Fragment(R.layout.fr_onboarding) {
         if (position == onboardNamesArray.size - 1) {
             bt_onLoginFrag.visibility = View.VISIBLE
             bt_onLoginFrag.setOnClickListener {
-                val action = OnboardFragmentDirections.actionOnboardFragmentToLoginFragment()
+                val action = OnboardFragmentDirections.actionOnboardFragmentToAuthFragment()
                 findNavController().navigate(action)
             }
         }
