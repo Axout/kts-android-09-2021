@@ -15,23 +15,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class OnboardFragment : Fragment(R.layout.fragment_onboard) {
 
-    private val viewModel by viewModels<DatastoreViewModel>()
-
     private val binding by viewBinding(FragmentOnboardBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController = findNavController()
-        viewLifecycleOwner.launchOnStartedState {
-//            viewModel.firstStartLiveData.collect {
-//                if (it != null) {
-//                    navController.navigate(R.id.authFragment)
-//                }
-//            }
-        }
-        //navController.navigate(R.id.authFragment)
-
-        //viewModel.save(true)
 
         val onboardAdapter = OnboardAdapter(activity as AppCompatActivity, resources.getStringArray(R.array.onboard_names).size)
         binding.onboardViewPager.adapter = onboardAdapter
