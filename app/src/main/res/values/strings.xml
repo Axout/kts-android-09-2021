@@ -41,4 +41,5 @@
         <item>Share your location with your friends</item>
         <item>Set new records on your territory</item>
     </string-array>
+    <string name="no_activities">You do not have any training yet</string>
 </resources>

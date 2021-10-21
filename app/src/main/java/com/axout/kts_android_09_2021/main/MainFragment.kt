@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -53,7 +54,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun bindViewModel() {
-        viewModel.athleteActivitiesList.observe(viewLifecycleOwner, Observer { athleteActivitiesAdapter.items = it })
+        viewModel.athleteActivitiesList.observe(viewLifecycleOwner, Observer {
+            if (it == null) {
+                Toast.makeText(activity, R.string.no_activities, Toast.LENGTH_LONG).show()
+            } else {
+                athleteActivitiesAdapter.items = it
+            }
+        })
         viewModel.getListActivities(before = Parameters.BEFORE, after = Parameters.AFTER)
 
         viewModelAthlete.getLoggedInAthlete()
