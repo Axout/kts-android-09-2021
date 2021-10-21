@@ -27,4 +27,5 @@
         <item>Делитесь местоположением с друзьями</item>
         <item>Ставьте новые рекорды на своей территории</item>
     </string-array>
+	<string name="no_activities">У вас ещё нет тренировок</string>
 </resources>
