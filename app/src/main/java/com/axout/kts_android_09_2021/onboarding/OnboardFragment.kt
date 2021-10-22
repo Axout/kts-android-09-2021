@@ -12,6 +12,7 @@ import com.axout.kts_android_09_2021.databinding.FragmentOnboardBinding
 import com.axout.kts_android_09_2021.datastore.DatastoreViewModel
 import com.axout.kts_android_09_2021.utils.launchOnStartedState
 import com.google.android.material.tabs.TabLayoutMediator
+import timber.log.Timber
 
 class OnboardFragment : Fragment(R.layout.fragment_onboard) {
 
@@ -19,6 +20,8 @@ class OnboardFragment : Fragment(R.layout.fragment_onboard) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Timber.d("Hello timber!")
 
         val onboardAdapter = OnboardAdapter(activity as AppCompatActivity, resources.getStringArray(R.array.onboard_names).size)
         binding.onboardViewPager.adapter = onboardAdapter
