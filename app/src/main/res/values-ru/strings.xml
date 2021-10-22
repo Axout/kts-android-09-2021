@@ -28,4 +28,5 @@
         <item>Ставьте новые рекорды на своей территории</item>
     </string-array>
     <string name="no_activities">У вас ещё нет тренировок</string>
+	<string name="not_connected">Нет соединения с интернетом</string>
 </resources>

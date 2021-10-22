@@ -2,6 +2,7 @@ package com.axout.kts_android_09_2021.detailed
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -31,27 +32,31 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
         dataModel.activityID.value?.let { viewModel.getActivityById(id = it, include_all_efforts = true) }
 
         viewModel.detailedActivity.observe(viewLifecycleOwner, Observer { detailedActivity ->
-            (dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
-            binding.progress.isVisible = false
-            binding.tvActivityName.text = detailedActivity.name
-            binding.tvDistance.text = convertDistance(detailedActivity.distance)
-            binding.tvTime.text = convertTime(detailedActivity.time)
-            (detailedActivity.avgSpeed.toString() + " m/s").also { binding.tvAvgSpeed.text = it }
-            (detailedActivity.maxSpeed.toString() + " m/s").also { binding.tvMaxSpeed.text = it }
-            (detailedActivity.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
-            (detailedActivity.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
+            if (detailedActivity == null) {
+                Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_LONG).show()
+            } else {
+                (dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
+                binding.progress.isVisible = false
+                binding.tvActivityName.text = detailedActivity.name
+                binding.tvDistance.text = convertDistance(detailedActivity.distance)
+                binding.tvTime.text = convertTime(detailedActivity.time)
+                (detailedActivity.avgSpeed.toString() + " m/s").also { binding.tvAvgSpeed.text = it }
+                (detailedActivity.maxSpeed.toString() + " m/s").also { binding.tvMaxSpeed.text = it }
+                (detailedActivity.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
+                (detailedActivity.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
 
-            Glide.with(this)
-                .load(dataModel.profile.value)
-                .transform(CircleCrop())
-                .placeholder(R.drawable.avatar_m)
-                .into(binding.ivAvatar)
+                Glide.with(this)
+                    .load(dataModel.profile.value)
+                    .transform(CircleCrop())
+                    .placeholder(R.drawable.avatar_m)
+                    .into(binding.ivAvatar)
 
-            Glide.with(this)
-                .load(detailedActivity.photos.primary?.urls?.bigPhoto)
-                .transform(CircleCrop())
-                .placeholder(R.drawable.route_2)
-                .into(binding.ivPhoto)
+                Glide.with(this)
+                    .load(detailedActivity.photos.primary?.urls?.bigPhoto)
+                    .transform(CircleCrop())
+                    .placeholder(R.drawable.route_2)
+                    .into(binding.ivPhoto)
+            }
         })
     }
 

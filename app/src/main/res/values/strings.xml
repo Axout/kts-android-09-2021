@@ -42,4 +42,5 @@
         <item>Set new records on your territory</item>
     </string-array>
     <string name="no_activities">You do not have any training yet</string>
+    <string name="not_connected">Not connected</string>
 </resources>

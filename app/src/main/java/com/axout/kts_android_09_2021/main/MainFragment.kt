@@ -65,9 +65,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         viewModelAthlete.getLoggedInAthlete()
         viewModelAthlete.detailedAthlete.observe(viewLifecycleOwner, Observer {
-            dataModel.firstname.value = it.firstname
-            dataModel.lastname.value = it.lastname
-            dataModel.profile.value = it.profile
+            if (it == null) {
+                Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_LONG).show()
+            } else {
+                dataModel.firstname.value = it.firstname
+                dataModel.lastname.value = it.lastname
+                dataModel.profile.value = it.profile
+            }
         })
     }
 }
