@@ -14,19 +14,20 @@ class WorkoutListViewModel : ViewModel() {
 
     private val workoutRepository = WorkoutRepository()
 
-    private val workoutsMutableFlow = MutableStateFlow<List<Workout>>(emptyList())
+//    private val workoutsMutableFlow = MutableStateFlow<List<Workout>>(emptyList())
 
     val workoutsFlow: Flow<List<Workout>>
-        get() = workoutsMutableFlow.asStateFlow()
+        get() = workoutRepository.observeAllWorkouts()
+//        get() = workoutsMutableFlow.asStateFlow()
 
-    fun loadList() {
-        viewModelScope.launch {
-            try {
-                workoutsMutableFlow.value = workoutRepository.getAllWorkouts()
-            } catch (t: Throwable) {
-                Timber.e(t, "workout list error")
-                workoutsMutableFlow.value = emptyList()
-            }
-        }
-    }
+//    fun loadList() {
+//        viewModelScope.launch {
+//            try {
+//                workoutsMutableFlow.value = workoutRepository.getAllWorkouts()
+//            } catch (t: Throwable) {
+//                Timber.e(t, "workout list error")
+//                workoutsMutableFlow.value = emptyList()
+//            }
+//        }
+//    }
 }

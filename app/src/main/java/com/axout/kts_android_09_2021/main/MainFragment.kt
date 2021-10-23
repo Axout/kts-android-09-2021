@@ -1,5 +1,9 @@
 package com.axout.kts_android_09_2021.main
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -18,9 +22,12 @@ import com.axout.kts_android_09_2021.utils.autoCleared
 import androidx.lifecycle.Observer
 import com.axout.kts_android_09_2021.networking.Parameters
 import androidx.navigation.fragment.findNavController
+import com.axout.kts_android_09_2021.data.models.Workout
+import com.axout.kts_android_09_2021.data.presentation.WorkoutListAdapter
 import com.axout.kts_android_09_2021.data.presentation.WorkoutListViewModel
 import com.axout.kts_android_09_2021.main.models.DataModel
 import com.axout.kts_android_09_2021.data.presentation.WorkoutViewModel
+import com.axout.kts_android_09_2021.main.models.AthleteActivity
 import com.axout.kts_android_09_2021.utils.launchOnStartedState
 import timber.log.Timber
 
@@ -34,11 +41,29 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val binding by viewBinding(FragmentMainBinding::bind)
     private var athleteActivitiesAdapter: ComplexDelegatesListAdapter by autoCleared()
+    private var workoutAdapter: WorkoutListAdapter by autoCleared()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
-        bindViewModel()
+        if (isOnline(context!!)) bindViewModel()
+        else {
+            initListWorkout()
+            bindViewModelWorkout()
+//            viewModelWorkoutList.loadList()
+        }
+    }
+
+    private fun initListWorkout() {
+        workoutAdapter = WorkoutListAdapter(::navigateToUserDetails)
+        with(binding.activitiesList) {
+            adapter = workoutAdapter
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun navigateToUserDetails(workout: Workout) {
+        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment())
     }
 
     private fun initList() {
@@ -90,11 +115,27 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun bindViewModelWorkout() {
-        viewModelWorkoutList.loadList()
         viewLifecycleOwner.launchOnStartedState {
             viewModelWorkoutList.workoutsFlow.collect {
-                athleteActivitiesAdapter.items = it
+                workoutAdapter.items = it
             }
+        }
+    }
+
+    private fun isOnline(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val n = cm.activeNetwork
+            if (n != null) {
+                val nc = cm.getNetworkCapabilities(n)
+                //проверяем wi-fi и мобильный интернет
+                return nc!!.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+            }
+            return false
+        } else {
+            val netInfo = cm.activeNetworkInfo
+            return netInfo != null && netInfo.isConnectedOrConnecting
         }
     }
 }
