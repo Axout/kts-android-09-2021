@@ -11,14 +11,17 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
+import kotlinx.coroutines.flow.collect
 import com.axout.kts_android_09_2021.R
 import com.axout.kts_android_09_2021.databinding.FragmentMainBinding
 import com.axout.kts_android_09_2021.utils.autoCleared
 import androidx.lifecycle.Observer
 import com.axout.kts_android_09_2021.networking.Parameters
 import androidx.navigation.fragment.findNavController
+import com.axout.kts_android_09_2021.data.presentation.WorkoutListViewModel
 import com.axout.kts_android_09_2021.main.models.DataModel
 import com.axout.kts_android_09_2021.data.presentation.WorkoutViewModel
+import com.axout.kts_android_09_2021.utils.launchOnStartedState
 import timber.log.Timber
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -27,6 +30,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private val viewModelAthlete: DetailedAthleteViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
     private val viewModelWorkout by viewModels<WorkoutViewModel>()
+    private val viewModelWorkoutList by viewModels<WorkoutListViewModel>()
 
     private val binding by viewBinding(FragmentMainBinding::bind)
     private var athleteActivitiesAdapter: ComplexDelegatesListAdapter by autoCleared()
@@ -41,7 +45,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         athleteActivitiesAdapter = ComplexDelegatesListAdapter(
             detailedActivity = { athleteActivity ->
                 dataModel.activityID.value = athleteActivity.id
-                Log.d("tag", "activity id = ${athleteActivity.id}")
                 findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment())
             }
         )
@@ -61,12 +64,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             if (it == null) {
                 Toast.makeText(activity, R.string.no_activities, Toast.LENGTH_LONG).show()
             } else {
-                athleteActivitiesAdapter.items = it
                 if (it.isEmpty()) {
                     Log.d("tag","list is empty")
                 } else {
                     Log.d("tag","List<AA>.size = ${it.size}")
-                    viewModelWorkout.save(it[0].id, it[0].name, it[0].distance, it[0].kudos)
+                    athleteActivitiesAdapter.items = it
+                    for (item in it) {
+                        viewModelWorkout.save(item.id, item.name, item.distance, item.kudos)
+                    }
                 }
             }
         })
@@ -82,5 +87,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 dataModel.profile.value = it.profile
             }
         })
+    }
+
+    private fun bindViewModelWorkout() {
+        viewModelWorkoutList.loadList()
+        viewLifecycleOwner.launchOnStartedState {
+            viewModelWorkoutList.workoutsFlow.collect {
+                athleteActivitiesAdapter.items = it
+            }
+        }
     }
 }
