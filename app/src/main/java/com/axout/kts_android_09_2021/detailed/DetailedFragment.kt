@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.axout.kts_android_09_2021.R
 import com.axout.kts_android_09_2021.databinding.FragmentDetailedBinding
@@ -19,6 +20,7 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
     private val viewModel: DetailedActivityViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
+    private val args: DetailedFragmentArgs by navArgs()
 
     private val binding by viewBinding(FragmentDetailedBinding::bind)
 
@@ -29,7 +31,7 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
     private fun bindViewModel() {
 
-        dataModel.activityID.value?.let { viewModel.getActivityById(id = it, include_all_efforts = true) }
+        viewModel.getActivityById(id = args.id, include_all_efforts = true)
 
         viewModel.detailedActivity.observe(viewLifecycleOwner, Observer { detailedActivity ->
             if (detailedActivity == null) {

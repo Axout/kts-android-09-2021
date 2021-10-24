@@ -27,9 +27,7 @@ import com.axout.kts_android_09_2021.data.presentation.WorkoutListAdapter
 import com.axout.kts_android_09_2021.data.presentation.WorkoutListViewModel
 import com.axout.kts_android_09_2021.main.models.DataModel
 import com.axout.kts_android_09_2021.data.presentation.WorkoutViewModel
-import com.axout.kts_android_09_2021.main.models.AthleteActivity
 import com.axout.kts_android_09_2021.utils.launchOnStartedState
-import timber.log.Timber
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
@@ -50,27 +48,25 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         else {
             initListWorkout()
             bindViewModelWorkout()
-//            viewModelWorkoutList.loadList()
         }
     }
 
     private fun initListWorkout() {
-        workoutAdapter = WorkoutListAdapter(::navigateToUserDetails)
+        workoutAdapter = WorkoutListAdapter(::navigateToDetailedFragment)
         with(binding.activitiesList) {
             adapter = workoutAdapter
             setHasFixedSize(true)
         }
     }
 
-    private fun navigateToUserDetails(workout: Workout) {
-        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment())
+    private fun navigateToDetailedFragment(workout: Workout) {
+        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment(workout.id))
     }
 
     private fun initList() {
         athleteActivitiesAdapter = ComplexDelegatesListAdapter(
             detailedActivity = { athleteActivity ->
-                dataModel.activityID.value = athleteActivity.id
-                findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment())
+                findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment(athleteActivity.id))
             }
         )
 
@@ -92,7 +88,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 if (it.isEmpty()) {
                     Log.d("tag","list is empty")
                 } else {
-                    Log.d("tag","List<AA>.size = ${it.size}")
                     athleteActivitiesAdapter.items = it
                     for (item in it) {
                         viewModelWorkout.save(item.id, item.name, item.distance, item.kudos)
