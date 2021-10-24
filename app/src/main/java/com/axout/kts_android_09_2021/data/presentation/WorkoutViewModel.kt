@@ -15,13 +15,13 @@ class WorkoutViewModel : ViewModel() {
 
     private val workoutRepository = WorkoutRepository()
 
-    private val saveError = Channel<Int>(Channel.BUFFERED)
     private val saveSuccess = Channel<Unit>(Channel.BUFFERED)
+    private val saveError = Channel<String>(Channel.BUFFERED)
 
     val saveSuccessFlow: Flow<Unit>
         get() = saveSuccess.receiveAsFlow()
 
-    val saveErrorFlow: Flow<Int>
+    val saveErrorFlow: Flow<String>
         get() = saveError.receiveAsFlow()
 
     fun save(
@@ -45,6 +45,7 @@ class WorkoutViewModel : ViewModel() {
                 saveSuccess.send(Unit)
             } catch (t: Throwable) {
                 Timber.e(t, "workout save error")
+                saveError.send("workout save error")
             }
         }
     }
