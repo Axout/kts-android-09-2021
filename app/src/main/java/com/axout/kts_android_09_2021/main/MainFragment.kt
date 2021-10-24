@@ -43,9 +43,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initList()
-        if (isOnline(context!!)) bindViewModel()
-        else {
+
+        if (isOnline(context!!)) {
+            initList()
+            bindViewModel()
+        } else {
             initListWorkout()
             bindViewModelWorkout()
         }
@@ -54,7 +56,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun initListWorkout() {
         workoutAdapter = WorkoutListAdapter(::navigateToDetailedFragment)
         with(binding.activitiesList) {
+            val orientation = RecyclerView.VERTICAL
             adapter = workoutAdapter
+            layoutManager = LinearLayoutManager(context, orientation, false)
+
+            addItemDecoration(DividerItemDecoration(context, orientation))
             setHasFixedSize(true)
         }
     }
@@ -70,7 +76,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         )
 
-        binding.activitiesList.apply {
+        with(binding.activitiesList) {
             val orientation = RecyclerView.VERTICAL
             adapter = athleteActivitiesAdapter
             layoutManager = LinearLayoutManager(context, orientation, false)
