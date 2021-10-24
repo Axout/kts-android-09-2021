@@ -1,5 +1,9 @@
 package com.axout.kts_android_09_2021.detailed
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,6 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.axout.kts_android_09_2021.R
+import com.axout.kts_android_09_2021.data.presentation.DetailedWorkoutViewModel
 import com.axout.kts_android_09_2021.databinding.FragmentDetailedBinding
 import com.axout.kts_android_09_2021.main.models.DataModel
 import com.bumptech.glide.Glide
@@ -21,12 +26,21 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
     private val viewModel: DetailedActivityViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
     private val args: DetailedFragmentArgs by navArgs()
-
+    private val viewModelDetailedWorkout: DetailedWorkoutViewModel by viewModels()
     private val binding by viewBinding(FragmentDetailedBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindViewModel()
+
+        if (isOnline(context!!)) {
+            bindViewModel()
+        } else {
+            bindViewModelDetailedWorkout()
+        }
+    }
+
+    private fun bindViewModelDetailedWorkout() {
+
     }
 
     private fun bindViewModel() {
@@ -58,6 +72,8 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
                     .transform(CircleCrop())
                     .placeholder(R.drawable.route_2)
                     .into(binding.ivPhoto)
+
+                viewModelDetailedWorkout.save(args.id, detailedActivity)
             }
         })
     }
@@ -71,5 +87,22 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
         val minutes = (totalSecs % 3600) / 60
         val seconds = totalSecs % 60
         return String.format("%02d:%02d:%02d", hours, minutes, seconds)
+    }
+
+    private fun isOnline(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val n = cm.activeNetwork
+            if (n != null) {
+                val nc = cm.getNetworkCapabilities(n)
+                //проверяем wi-fi и мобильный интернет
+                return nc!!.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+            }
+            return false
+        } else {
+            val netInfo = cm.activeNetworkInfo
+            return netInfo != null && netInfo.isConnectedOrConnecting
+        }
     }
 }

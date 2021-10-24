@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey
     ]
 )
 data class DetailedWorkout(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = DetailedWorkoutContract.Columns.ID)
     val id: Long,
     @ColumnInfo(name = DetailedWorkoutContract.Columns.NAME)
@@ -30,5 +30,5 @@ data class DetailedWorkout(
     @ColumnInfo(name = DetailedWorkoutContract.Columns.MAX_ELEVATION)
     val maxElevation: Float,
     @ColumnInfo(name = DetailedWorkoutContract.Columns.PHOTO)
-    val photo: String
+    val photo: String?
 )
