@@ -4,11 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.axout.kts_android_09_2021.data.DetailedWorkoutRepository
 import com.axout.kts_android_09_2021.data.models.DetailedWorkout
-import com.axout.kts_android_09_2021.data.models.Workout
 import com.axout.kts_android_09_2021.detailed.DetailedActivity
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -16,8 +14,14 @@ class DetailedWorkoutViewModel : ViewModel() {
 
     private val detailedWorkoutRepository = DetailedWorkoutRepository()
 
+    private val detailedWorkoutEmpty = DetailedWorkout(0,"",0F,0,0F,0F,0F,0F,"")
+    private val workoutMutableFlow = MutableStateFlow<DetailedWorkout?>(detailedWorkoutEmpty)
+
     private val saveSuccess = Channel<Unit>(Channel.BUFFERED)
     private val saveError = Channel<String>(Channel.BUFFERED)
+
+    val workoutFlow: Flow<DetailedWorkout?>
+        get() = workoutMutableFlow.asStateFlow()
 
     val saveSuccessFlow: Flow<Unit>
         get() = saveSuccess.receiveAsFlow()
@@ -53,12 +57,13 @@ class DetailedWorkoutViewModel : ViewModel() {
         }
     }
 
-    fun loadWorkoutById(workout: Workout) {
+    fun loadWorkoutById(id: Long) {
         viewModelScope.launch {
             try {
-                detailedWorkoutRepository.getDetailedWorkoutById(workout.id)
+                workoutMutableFlow.value = detailedWorkoutRepository.getDetailedWorkoutById(id)
             } catch (t: Throwable) {
                 Timber.e(t)
+                //workoutMutableFlow.value = detailedWorkoutEmpty
             }
         }
     }

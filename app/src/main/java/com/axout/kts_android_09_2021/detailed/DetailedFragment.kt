@@ -18,8 +18,10 @@ import com.axout.kts_android_09_2021.R
 import com.axout.kts_android_09_2021.data.presentation.DetailedWorkoutViewModel
 import com.axout.kts_android_09_2021.databinding.FragmentDetailedBinding
 import com.axout.kts_android_09_2021.main.models.DataModel
+import com.axout.kts_android_09_2021.utils.launchOnStartedState
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import kotlinx.coroutines.flow.collect
 
 class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
@@ -35,12 +37,43 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
         if (isOnline(context!!)) {
             bindViewModel()
         } else {
+            viewModelDetailedWorkout.loadWorkoutById(args.id)
             bindViewModelDetailedWorkout()
         }
     }
 
     private fun bindViewModelDetailedWorkout() {
+        viewLifecycleOwner.launchOnStartedState {
+            viewModelDetailedWorkout.workoutFlow.collect { detailedWorkout ->
+                if (detailedWorkout == null) {
+                    Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_LONG).show()
+                } else {
+                    (dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
+                    binding.progress.isVisible = false
+                    binding.tvActivityName.text = detailedWorkout.name
+                    binding.tvDistance.text = convertDistance(detailedWorkout.distance)
+                    binding.tvTime.text = convertTime(detailedWorkout.time)
+                    (detailedWorkout.avgSpeed.toString() + " m/s").also { binding.tvAvgSpeed.text = it }
+                    (detailedWorkout.maxSpeed.toString() + " m/s").also { binding.tvMaxSpeed.text = it }
+                    (detailedWorkout.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
+                    (detailedWorkout.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
 
+                    activity?.let {
+                        Glide.with(it)
+                            .load(dataModel.profile.value)
+                            .transform(CircleCrop())
+                            .placeholder(R.drawable.avatar_m)
+                            .into(binding.ivAvatar)
+
+                        Glide.with(it)
+                            .load(detailedWorkout.photo)
+                            .transform(CircleCrop())
+                            .placeholder(R.drawable.route_2)
+                            .into(binding.ivPhoto)
+                    }
+                }
+            }
+        }
     }
 
     private fun bindViewModel() {
