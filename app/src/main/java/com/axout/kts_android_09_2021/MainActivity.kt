@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.take
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.axout.kts_android_09_2021.datastore.DatastoreViewModel
 import com.axout.kts_android_09_2021.utils.launchOnStartedState
@@ -32,22 +33,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         3 -> R.id.mainFragment
                         else -> R.id.onboardFragment
                     }
-                setNavStartFragment(navStartDestination)
+                    //setNavGraph(navStartDestination)
             }
         }
     }
 
-    private fun setNavStartFragment(navStartDestination: Int) {
+    private fun setNavGraph(navStartDestination: Int) {
         Log.d("tag", "navStartDestination = $navStartDestination")
-        // Configure the navigation
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-        navGraph.setStartDestination(navStartDestination)
-        navController.graph = navGraph
-
-        supportFragmentManager.beginTransaction()
-            .setPrimaryNavigationFragment(navHostFragment)
-            .commit()
+        navController.setGraph(R.navigation.nav_graph)
     }
 }
