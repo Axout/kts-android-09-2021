@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.take
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
 import com.axout.kts_android_09_2021.datastore.DatastoreViewModel
 import com.axout.kts_android_09_2021.utils.launchOnStartedState
 
