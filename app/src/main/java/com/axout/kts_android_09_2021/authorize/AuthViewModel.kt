@@ -2,6 +2,7 @@ package com.axout.kts_android_09_2021.authorize
 
 import android.app.Application
 import android.content.Intent
+import android.util.Log
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
@@ -39,6 +40,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun onAuthCodeReceived(tokenRequest: TokenRequest) {
+        Log.d("tag", "onAuthCodeReceived")
         loadingMutableLiveData.postValue(true)
         authRepository.performTokenRequest(
             authService = authService,
@@ -55,6 +57,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun openLoginPage() {
+        Log.d("tag", "openLoginPage")
         val customTabsIntent = CustomTabsIntent.Builder()
             .setToolbarColor(ContextCompat.getColor(getApplication(), R.color.colorAccent))
             .build()
@@ -68,6 +71,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     override fun onCleared() {
+        Log.d("tag", "onCleared")
         super.onCleared()
         authService.dispose()
     }

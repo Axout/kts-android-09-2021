@@ -2,6 +2,7 @@ package com.axout.kts_android_09_2021.authorize
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,10 +21,12 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Log.d("tag", "onActivityCreated")
         bindViewModel()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.d("tag", "onActivityResult")
         if (requestCode == AUTH_REQUEST_CODE && data != null) {
             val tokenExchangeRequest = AuthorizationResponse.fromIntent(data)
                 ?.createTokenExchangeRequest()
@@ -44,15 +47,20 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         viewModel.openAuthPageLiveData.observe(viewLifecycleOwner, ::openAuthPage)
         viewModel.toastLiveData.observe(viewLifecycleOwner, ::toast)
         viewModel.authSuccessLiveData.observe(viewLifecycleOwner) {
+            Log.d("tag", "Auth success!")
             findNavController().navigate(AuthFragmentDirections.actionAuthFragmentToMainFragment())
         }
+        Log.d("tag", "bindViewModel")
     }
 
     private fun updateIsLoading(isLoading: Boolean) = with(binding) {
+        Log.d("tag", "updateIsLoading")
         loginProgress.isVisible = isLoading
     }
 
     private fun openAuthPage(intent: Intent) {
+        Log.d("tag", "openAuthPage")
+//        Log.d("tag", "intent $intent")
         startActivityForResult(intent, AUTH_REQUEST_CODE)
     }
 

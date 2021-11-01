@@ -12,12 +12,16 @@ class DatastoreViewModel(
 
     private val repository = DatastoreRepository(application)
 
-    val firstStartLiveData: Flow<Int>
+    val startStatusLiveData: Flow<Int>
         get() = repository.observe()
 
-    fun save(firstStart: Int) {
+    fun save(status: Int) {
         viewModelScope.launch {
-            repository.save(firstStart)
+            repository.save(status)
         }
+    }
+
+    suspend fun read(): Int {
+        return repository.read()
     }
 }
