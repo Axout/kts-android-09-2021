@@ -1,42 +1,26 @@
 package com.axout.kts_android_09_2021
 
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.take
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.axout.kts_android_09_2021.datastore.DatastoreViewModel
-import com.axout.kts_android_09_2021.utils.launchOnStartedState
+import androidx.lifecycle.Observer
+import com.axout.kts_android_09_2021.networking.NetworkLiveData
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    private val viewModel by viewModels<DatastoreViewModel>()
+    private var toast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        this.launchOnStartedState {
-            viewModel.firstStartLiveData
-                .take(1)
-                .collect { status ->
-                    Log.d("tag", "firstStart = $status")
-                    val navStartDestination =
-                        when (status) {
-                            1 -> {
-                                viewModel.save(2)
-                                R.id.onboardFragment
-                            }
-                            2 -> R.id.authFragment
-                            3 -> R.id.mainFragment
-                            else -> R.id.onboardFragment
-                        }
-                    setNavStartDestination(navStartDestination)
-                }
-        }
-    }
-
-    private fun setNavStartDestination(navStartDestination: Int) {
-        Log.d("tag", "navStartDestination = $navStartDestination")
+        NetworkLiveData.observe(this, Observer {
+            toast?.cancel()
+            toast = if (it) {
+                Toast.makeText(this,"internet connected", Toast.LENGTH_SHORT)
+            } else {
+                Toast.makeText(this,"no internet connection", Toast.LENGTH_SHORT)
+            }
+            toast?.show()
+        })
     }
 }
