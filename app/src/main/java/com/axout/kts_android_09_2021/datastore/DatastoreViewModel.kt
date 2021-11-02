@@ -20,4 +20,8 @@ class DatastoreViewModel(
             repository.save(status)
         }
     }
+
+    suspend fun read(): Int {
+        return repository.read()
+    }
 }

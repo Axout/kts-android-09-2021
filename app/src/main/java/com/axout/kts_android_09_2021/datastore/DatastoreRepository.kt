@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class DatastoreRepository(
@@ -28,6 +29,11 @@ class DatastoreRepository(
             .map {
                 it[KEY] ?: 1
             }
+    }
+
+    suspend fun read(): Int {
+        val preferences = dataStore.data.first()
+        return preferences[KEY] ?: 1
     }
 
     companion object {

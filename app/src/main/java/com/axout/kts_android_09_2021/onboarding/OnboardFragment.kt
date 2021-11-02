@@ -20,7 +20,6 @@ class OnboardFragment : Fragment(R.layout.fragment_onboard) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
 
         val onboardAdapter = OnboardAdapter(activity as AppCompatActivity, resources.getStringArray(R.array.onboard_names).size)
         binding.onboardViewPager.adapter = onboardAdapter
