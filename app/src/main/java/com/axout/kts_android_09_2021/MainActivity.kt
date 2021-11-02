@@ -8,19 +8,15 @@ import com.axout.kts_android_09_2021.networking.NetworkLiveData
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    private var toast: Toast? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         NetworkLiveData.observe(this, Observer {
-            toast?.cancel()
-            toast = if (it) {
-                Toast.makeText(this,"internet connected", Toast.LENGTH_SHORT)
+            if (it) {
+                //Toast.makeText(this,"internet connected", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this,"no internet connection", Toast.LENGTH_SHORT)
+                Toast.makeText(this,"no internet connection", Toast.LENGTH_SHORT).show()
             }
-            toast?.show()
         })
     }
 }
