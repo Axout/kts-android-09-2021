@@ -5,20 +5,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.axout.kts_android_09_2021.main.models.DetailedAthlete
-import com.axout.kts_android_09_2021.networking.DetailedAthleteRepository
+import com.axout.kts_android_09_2021.main.models.Athlete
+import com.axout.kts_android_09_2021.networking.AthleteRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class DetailedAthleteViewModel: ViewModel() {
+class AthleteViewModel: ViewModel() {
 
-    private val repository = DetailedAthleteRepository()
-    private val detailedAthleteLiveData = MutableLiveData<DetailedAthlete>()
+    private val repository = AthleteRepository()
+    private val athleteLiveData = MutableLiveData<Athlete>()
 
     private var currentDetailedAthleteJob: Job? = null
 
-    val detailedAthlete: LiveData<DetailedAthlete>
-        get() = detailedAthleteLiveData
+    val athlete: LiveData<Athlete>
+        get() = athleteLiveData
 
     fun getLoggedInAthlete() {
         currentDetailedAthleteJob?.cancel()
@@ -28,10 +28,10 @@ class DetailedAthleteViewModel: ViewModel() {
                 repository.getLoggedInAthlete()
             }.onSuccess {
                 Log.d("tag", "onSuccess: $it")
-                detailedAthleteLiveData.postValue(it)
+                athleteLiveData.postValue(it)
             }.onFailure {
                 Log.d("tag", "onFailure: $it")
-                detailedAthleteLiveData.postValue(null)
+                athleteLiveData.postValue(null)
             }
         }
     }

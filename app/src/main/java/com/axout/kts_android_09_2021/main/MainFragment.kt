@@ -31,15 +31,15 @@ import com.axout.kts_android_09_2021.utils.launchOnStartedState
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
-    private val viewModel:              WorkoutsViewModel by viewModels()
-    private val viewModelAthlete:       DetailedAthleteViewModel by viewModels()
-    private val viewModelWorkout:       LocalWorkoutViewModel by viewModels()
+    private val viewModelWorkouts:      WorkoutsViewModel by viewModels()
+    private val viewModelAthlete:       AthleteViewModel by viewModels()
+    private val viewModelLocalWorkout:  LocalWorkoutViewModel by viewModels()
     private val viewModelWorkoutList:   LocalWorkoutListViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
 
     private val binding by viewBinding(FragmentMainBinding::bind)
-    private var athleteActivitiesAdapter: ComplexDelegatesListAdapter by autoCleared()
-    private var workoutAdapter: LocalWorkoutListAdapter by autoCleared()
+    private var workoutsAdapter: ComplexDelegatesListAdapter by autoCleared()
+    private var localWorkoutAdapter: LocalWorkoutListAdapter by autoCleared()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,10 +54,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun initListWorkout() {
-        workoutAdapter = LocalWorkoutListAdapter(::navigateToDetailedFragment)
+        localWorkoutAdapter = LocalWorkoutListAdapter(::navigateToDetailedFragment)
         with(binding.activitiesList) {
             val orientation = RecyclerView.VERTICAL
-            adapter = workoutAdapter
+            adapter = localWorkoutAdapter
             layoutManager = LinearLayoutManager(context, orientation, false)
 
             addItemDecoration(DividerItemDecoration(context, orientation))
@@ -70,7 +70,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun initList() {
-        athleteActivitiesAdapter = ComplexDelegatesListAdapter(
+        workoutsAdapter = ComplexDelegatesListAdapter(
             detailedWorkout = { athleteActivity ->
                 findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment(athleteActivity.id))
             }
@@ -78,7 +78,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         with(binding.activitiesList) {
             val orientation = RecyclerView.VERTICAL
-            adapter = athleteActivitiesAdapter
+            adapter = workoutsAdapter
             layoutManager = LinearLayoutManager(context, orientation, false)
 
             addItemDecoration(DividerItemDecoration(context, orientation))
@@ -87,24 +87,24 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun bindViewModel() {
-        viewModel.workoutsList.observe(viewLifecycleOwner, Observer {
+        viewModelWorkouts.workoutsList.observe(viewLifecycleOwner, Observer {
             if (it == null) {
                 Toast.makeText(activity, R.string.no_activities, Toast.LENGTH_LONG).show()
             } else {
                 if (it.isEmpty()) {
                     Log.d("tag","list is empty")
                 } else {
-                    athleteActivitiesAdapter.items = it
+                    workoutsAdapter.items = it
                     for (item in it) {
-                        viewModelWorkout.save(item.id, item.name, item.distance, item.kudos)
+                        viewModelLocalWorkout.save(item.id, item.name, item.distance, item.kudos)
                     }
                 }
             }
         })
-        viewModel.getListWorkouts(before = Parameters.BEFORE, after = Parameters.AFTER)
+        viewModelWorkouts.getListWorkouts(before = Parameters.BEFORE, after = Parameters.AFTER)
 
         viewModelAthlete.getLoggedInAthlete()
-        viewModelAthlete.detailedAthlete.observe(viewLifecycleOwner, Observer {
+        viewModelAthlete.athlete.observe(viewLifecycleOwner, Observer {
             if (it == null) {
                 Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_LONG).show()
             } else {
@@ -118,7 +118,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun bindViewModelWorkout() {
         viewLifecycleOwner.launchOnStartedState {
             viewModelWorkoutList.workoutsFlow.collect {
-                workoutAdapter.items = it
+                localWorkoutAdapter.items = it
             }
         }
     }
