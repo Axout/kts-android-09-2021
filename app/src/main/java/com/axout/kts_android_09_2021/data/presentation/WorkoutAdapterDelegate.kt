@@ -2,16 +2,16 @@ package com.axout.kts_android_09_2021.data.presentation
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.axout.kts_android_09_2021.data.models.Workout
+import com.axout.kts_android_09_2021.data.models.LocalWorkout
 import com.axout.kts_android_09_2021.databinding.ItemActivitiesBinding
 import com.axout.kts_android_09_2021.utils.bindingInflate
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 
 class WorkoutAdapterDelegate(
-    private val onWorkoutClick: (Workout) -> Unit
-) : AbsListItemAdapterDelegate<Workout, Workout, WorkoutAdapterDelegate.Holder>() {
+    private val onWorkoutClick: (LocalWorkout) -> Unit
+) : AbsListItemAdapterDelegate<LocalWorkout, LocalWorkout, WorkoutAdapterDelegate.Holder>() {
 
-    override fun isForViewType(item: Workout, items: MutableList<Workout>, position: Int): Boolean {
+    override fun isForViewType(item: LocalWorkout, items: MutableList<LocalWorkout>, position: Int): Boolean {
         return true
     }
 
@@ -21,23 +21,23 @@ class WorkoutAdapterDelegate(
         }
     }
 
-    override fun onBindViewHolder(item: Workout, holder: Holder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(item: LocalWorkout, holder: Holder, payloads: MutableList<Any>) {
         holder.bind(item)
     }
 
     class Holder(
         private val binding: ItemActivitiesBinding,
-        onWorkoutClick: (Workout) -> Unit
+        onWorkoutClick: (LocalWorkout) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private var currentWorkout: Workout? = null
+        private var currentLocalWorkout: LocalWorkout? = null
 
         init {
-            binding.root.setOnClickListener { currentWorkout?.let(onWorkoutClick) }
+            binding.root.setOnClickListener { currentLocalWorkout?.let(onWorkoutClick) }
         }
 
-        fun bind(item: Workout) {
-            currentWorkout = item
+        fun bind(item: LocalWorkout) {
+            currentLocalWorkout = item
             "distance: ${item.distance} meters".also { binding.tvDistance.text = it }
             binding.tvName.text = item.name
             binding.tvKudos.text = item.kudos.toString()

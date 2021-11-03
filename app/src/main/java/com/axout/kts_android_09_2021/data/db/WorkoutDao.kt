@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.axout.kts_android_09_2021.data.models.Workout
+import com.axout.kts_android_09_2021.data.models.LocalWorkout
 import kotlinx.coroutines.flow.Flow
 import com.axout.kts_android_09_2021.data.models.WorkoutContract
 
@@ -12,8 +12,8 @@ import com.axout.kts_android_09_2021.data.models.WorkoutContract
 interface WorkoutDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertWorkouts(workouts: List<Workout>)
+    suspend fun insertWorkouts(localWorkouts: List<LocalWorkout>)
 
     @Query("SELECT * FROM ${WorkoutContract.TABLE_NAME}")
-    fun observeAllWorkouts(): Flow<List<Workout>>
+    fun observeAllWorkouts(): Flow<List<LocalWorkout>>
 }

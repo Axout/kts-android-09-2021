@@ -2,13 +2,13 @@ package com.axout.kts_android_09_2021.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.axout.kts_android_09_2021.data.models.DetailedWorkout
-import com.axout.kts_android_09_2021.data.models.Workout
+import com.axout.kts_android_09_2021.data.models.LocalDetailedWorkout
+import com.axout.kts_android_09_2021.data.models.LocalWorkout
 
 @Database(
     entities = [
-        Workout::class,
-        DetailedWorkout::class
+        LocalWorkout::class,
+        LocalDetailedWorkout::class
     ], version = ApplicationDatabase.DB_VERSION
 )
 abstract class ApplicationDatabase : RoomDatabase() {

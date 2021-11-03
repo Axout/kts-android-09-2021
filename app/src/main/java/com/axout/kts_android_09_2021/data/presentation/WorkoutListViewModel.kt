@@ -1,23 +1,18 @@
 package com.axout.kts_android_09_2021.data.presentation
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.axout.kts_android_09_2021.data.WorkoutRepository
-import com.axout.kts_android_09_2021.data.models.Workout
+import com.axout.kts_android_09_2021.data.LocalWorkoutRepository
+import com.axout.kts_android_09_2021.data.models.LocalWorkout
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class WorkoutListViewModel : ViewModel() {
 
-    private val workoutRepository = WorkoutRepository()
+    private val localWorkoutRepository = LocalWorkoutRepository()
 
-//    private val workoutsMutableFlow = MutableStateFlow<List<Workout>>(emptyList())
+//    private val workoutsMutableFlow = MutableStateFlow<List<AthleteActivity>>(emptyList())
 
-    val workoutsFlow: Flow<List<Workout>>
-        get() = workoutRepository.observeAllWorkouts()
+    val workoutsFlow: Flow<List<LocalWorkout>>
+        get() = localWorkoutRepository.observe()
 //        get() = workoutsMutableFlow.asStateFlow()
 
 //    fun loadList() {

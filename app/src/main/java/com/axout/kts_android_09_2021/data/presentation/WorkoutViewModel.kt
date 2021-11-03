@@ -3,8 +3,8 @@ package com.axout.kts_android_09_2021.data.presentation
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.axout.kts_android_09_2021.data.WorkoutRepository
-import com.axout.kts_android_09_2021.data.models.Workout
+import com.axout.kts_android_09_2021.data.LocalWorkoutRepository
+import com.axout.kts_android_09_2021.data.models.LocalWorkout
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -13,7 +13,7 @@ import timber.log.Timber
 
 class WorkoutViewModel : ViewModel() {
 
-    private val workoutRepository = WorkoutRepository()
+    private val localWorkoutRepository = LocalWorkoutRepository()
 
     private val saveSuccess = Channel<Unit>(Channel.BUFFERED)
     private val saveError = Channel<String>(Channel.BUFFERED)
@@ -31,7 +31,7 @@ class WorkoutViewModel : ViewModel() {
         kudos: Int
     ) {
 
-        val workout = Workout(
+        val localWorkout = LocalWorkout(
             id = id,
             name = name,
             distance = distance,
@@ -41,7 +41,7 @@ class WorkoutViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 Log.d("tag","workout save success")
-                workoutRepository.saveWorkout(workout)
+                localWorkoutRepository.save(localWorkout)
                 saveSuccess.send(Unit)
             } catch (t: Throwable) {
                 Timber.e(t, "workout save error")

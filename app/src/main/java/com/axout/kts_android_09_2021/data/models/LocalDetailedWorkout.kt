@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
         Index(DetailedWorkoutContract.Columns.NAME)
     ]
 )
-data class DetailedWorkout(
+data class LocalDetailedWorkout(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = DetailedWorkoutContract.Columns.ID)
     val id: Long,

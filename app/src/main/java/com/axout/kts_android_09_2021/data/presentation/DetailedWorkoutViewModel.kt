@@ -2,8 +2,8 @@ package com.axout.kts_android_09_2021.data.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.axout.kts_android_09_2021.data.DetailedWorkoutRepository
-import com.axout.kts_android_09_2021.data.models.DetailedWorkout
+import com.axout.kts_android_09_2021.data.LocalDetailedWorkoutRepository
+import com.axout.kts_android_09_2021.data.models.LocalDetailedWorkout
 import com.axout.kts_android_09_2021.detailed.DetailedActivity
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
@@ -12,15 +12,15 @@ import timber.log.Timber
 
 class DetailedWorkoutViewModel : ViewModel() {
 
-    private val detailedWorkoutRepository = DetailedWorkoutRepository()
+    private val localDetailedWorkoutRepository = LocalDetailedWorkoutRepository()
 
-    private val detailedWorkoutEmpty = DetailedWorkout(0,"",0F,0,0F,0F,0F,0F,"")
-    private val workoutMutableFlow = MutableStateFlow<DetailedWorkout?>(detailedWorkoutEmpty)
+    private val localDetailedWorkoutEmpty = LocalDetailedWorkout(0,"",0F,0,0F,0F,0F,0F,"")
+    private val workoutMutableFlow = MutableStateFlow<LocalDetailedWorkout?>(localDetailedWorkoutEmpty)
 
     private val saveSuccess = Channel<Unit>(Channel.BUFFERED)
     private val saveError = Channel<String>(Channel.BUFFERED)
 
-    val workoutFlow: Flow<DetailedWorkout?>
+    val workoutFlow: Flow<LocalDetailedWorkout?>
         get() = workoutMutableFlow.asStateFlow()
 
     val saveSuccessFlow: Flow<Unit>
@@ -34,7 +34,7 @@ class DetailedWorkoutViewModel : ViewModel() {
         detailedActivity: DetailedActivity
     ) {
 
-        val detailedWorkout = DetailedWorkout(
+        val localDetailedWorkout = LocalDetailedWorkout(
             id = id,
             name = detailedActivity.name,
             distance = detailedActivity.distance,
@@ -48,7 +48,7 @@ class DetailedWorkoutViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
-                detailedWorkoutRepository.saveWorkout(detailedWorkout)
+                localDetailedWorkoutRepository.save(localDetailedWorkout)
                 saveSuccess.send(Unit)
             } catch (t: Throwable) {
                 Timber.e(t, "detailedWorkout save error")
@@ -60,7 +60,7 @@ class DetailedWorkoutViewModel : ViewModel() {
     fun loadWorkoutById(id: Long) {
         viewModelScope.launch {
             try {
-                workoutMutableFlow.value = detailedWorkoutRepository.getDetailedWorkoutById(id)
+                workoutMutableFlow.value = localDetailedWorkoutRepository.getById(id)
             } catch (t: Throwable) {
                 Timber.e(t)
                 //workoutMutableFlow.value = detailedWorkoutEmpty

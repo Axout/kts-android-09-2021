@@ -22,7 +22,7 @@ import com.axout.kts_android_09_2021.utils.autoCleared
 import androidx.lifecycle.Observer
 import com.axout.kts_android_09_2021.networking.Parameters
 import androidx.navigation.fragment.findNavController
-import com.axout.kts_android_09_2021.data.models.Workout
+import com.axout.kts_android_09_2021.data.models.LocalWorkout
 import com.axout.kts_android_09_2021.data.presentation.WorkoutListAdapter
 import com.axout.kts_android_09_2021.data.presentation.WorkoutListViewModel
 import com.axout.kts_android_09_2021.main.models.DataModel
@@ -65,8 +65,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
     }
 
-    private fun navigateToDetailedFragment(workout: Workout) {
-        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment(workout.id))
+    private fun navigateToDetailedFragment(localWorkout: LocalWorkout) {
+        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment(localWorkout.id))
     }
 
     private fun initList() {
