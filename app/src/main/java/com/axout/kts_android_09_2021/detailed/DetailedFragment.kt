@@ -15,7 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.axout.kts_android_09_2021.R
-import com.axout.kts_android_09_2021.data.presentation.DetailedWorkoutViewModel
+import com.axout.kts_android_09_2021.data.presentation.LocalDetailedWorkoutViewModel
 import com.axout.kts_android_09_2021.databinding.FragmentDetailedBinding
 import com.axout.kts_android_09_2021.main.models.DataModel
 import com.axout.kts_android_09_2021.utils.launchOnStartedState
@@ -28,7 +28,7 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
     private val viewModel: com.axout.kts_android_09_2021.detailed.DetailedWorkoutViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
     private val args: DetailedFragmentArgs by navArgs()
-    private val viewModelDetailedWorkout: DetailedWorkoutViewModel by viewModels()
+    private val viewModelDetailedWorkout: LocalDetailedWorkoutViewModel by viewModels()
     private val binding by viewBinding(FragmentDetailedBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

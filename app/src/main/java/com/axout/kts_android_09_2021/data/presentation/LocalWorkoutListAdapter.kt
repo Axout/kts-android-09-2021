@@ -4,12 +4,12 @@ import androidx.recyclerview.widget.DiffUtil
 import com.axout.kts_android_09_2021.data.models.LocalWorkout
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
-class WorkoutListAdapter(
+class LocalWorkoutListAdapter(
     onWorkoutClick: (LocalWorkout) -> Unit
 ) : AsyncListDifferDelegationAdapter<LocalWorkout>(WorkoutDiffUtilCallback()) {
 
     init {
-        delegatesManager.addDelegate(WorkoutAdapterDelegate(onWorkoutClick))
+        delegatesManager.addDelegate(LocalWorkoutAdapterDelegate(onWorkoutClick))
     }
 
     class WorkoutDiffUtilCallback : DiffUtil.ItemCallback<LocalWorkout>() {

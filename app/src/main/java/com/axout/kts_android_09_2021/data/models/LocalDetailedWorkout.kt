@@ -6,29 +6,29 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = DetailedWorkoutContract.TABLE_NAME,
+    tableName = LocalDetailedWorkoutContract.TABLE_NAME,
     indices = [
-        Index(DetailedWorkoutContract.Columns.NAME)
+        Index(LocalDetailedWorkoutContract.Columns.NAME)
     ]
 )
 data class LocalDetailedWorkout(
     @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = DetailedWorkoutContract.Columns.ID)
+    @ColumnInfo(name = LocalDetailedWorkoutContract.Columns.ID)
     val id: Long,
-    @ColumnInfo(name = DetailedWorkoutContract.Columns.NAME)
+    @ColumnInfo(name = LocalDetailedWorkoutContract.Columns.NAME)
     val name: String,
-    @ColumnInfo(name = DetailedWorkoutContract.Columns.DISTANCE)
+    @ColumnInfo(name = LocalDetailedWorkoutContract.Columns.DISTANCE)
     val distance: Float,
-    @ColumnInfo(name = DetailedWorkoutContract.Columns.TIME)
+    @ColumnInfo(name = LocalDetailedWorkoutContract.Columns.TIME)
     val time: Int,
-    @ColumnInfo(name = DetailedWorkoutContract.Columns.AVG_SPEED)
+    @ColumnInfo(name = LocalDetailedWorkoutContract.Columns.AVG_SPEED)
     val avgSpeed: Float,
-    @ColumnInfo(name = DetailedWorkoutContract.Columns.MAX_SPEED)
+    @ColumnInfo(name = LocalDetailedWorkoutContract.Columns.MAX_SPEED)
     val maxSpeed: Float,
-    @ColumnInfo(name = DetailedWorkoutContract.Columns.ELEVATION_GAIN)
+    @ColumnInfo(name = LocalDetailedWorkoutContract.Columns.ELEVATION_GAIN)
     val elevationGain: Float,
-    @ColumnInfo(name = DetailedWorkoutContract.Columns.MAX_ELEVATION)
+    @ColumnInfo(name = LocalDetailedWorkoutContract.Columns.MAX_ELEVATION)
     val maxElevation: Float,
-    @ColumnInfo(name = DetailedWorkoutContract.Columns.PHOTO)
+    @ColumnInfo(name = LocalDetailedWorkoutContract.Columns.PHOTO)
     val photo: String?
 )

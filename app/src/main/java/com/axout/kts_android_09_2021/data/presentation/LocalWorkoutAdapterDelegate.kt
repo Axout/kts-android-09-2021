@@ -7,9 +7,9 @@ import com.axout.kts_android_09_2021.databinding.ItemActivitiesBinding
 import com.axout.kts_android_09_2021.utils.bindingInflate
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 
-class WorkoutAdapterDelegate(
+class LocalWorkoutAdapterDelegate(
     private val onWorkoutClick: (LocalWorkout) -> Unit
-) : AbsListItemAdapterDelegate<LocalWorkout, LocalWorkout, WorkoutAdapterDelegate.Holder>() {
+) : AbsListItemAdapterDelegate<LocalWorkout, LocalWorkout, LocalWorkoutAdapterDelegate.Holder>() {
 
     override fun isForViewType(item: LocalWorkout, items: MutableList<LocalWorkout>, position: Int): Boolean {
         return true

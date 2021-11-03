@@ -1,6 +1,6 @@
 package com.axout.kts_android_09_2021.data.models
 
-object WorkoutContract {
+object LocalWorkoutContract {
     const val TABLE_NAME = "workouts"
 
     object Columns {

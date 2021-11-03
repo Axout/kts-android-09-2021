@@ -6,19 +6,19 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = WorkoutContract.TABLE_NAME,
+    tableName = LocalWorkoutContract.TABLE_NAME,
     indices = [
-        Index(WorkoutContract.Columns.NAME)
+        Index(LocalWorkoutContract.Columns.NAME)
     ]
 )
 data class LocalWorkout(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = WorkoutContract.Columns.ID)
+    @ColumnInfo(name = LocalWorkoutContract.Columns.ID)
     val id: Long,
-    @ColumnInfo(name = WorkoutContract.Columns.NAME)
+    @ColumnInfo(name = LocalWorkoutContract.Columns.NAME)
     val name: String,
-    @ColumnInfo(name = WorkoutContract.Columns.DISTANCE)
+    @ColumnInfo(name = LocalWorkoutContract.Columns.DISTANCE)
     val distance: Float,
-    @ColumnInfo(name = WorkoutContract.Columns.KUDOS)
+    @ColumnInfo(name = LocalWorkoutContract.Columns.KUDOS)
     val kudos: Int
 )

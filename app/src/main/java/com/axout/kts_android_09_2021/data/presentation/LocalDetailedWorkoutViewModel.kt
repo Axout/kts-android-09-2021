@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class DetailedWorkoutViewModel : ViewModel() {
+class LocalDetailedWorkoutViewModel : ViewModel() {
 
     private val localDetailedWorkoutRepository = LocalDetailedWorkoutRepository()
 

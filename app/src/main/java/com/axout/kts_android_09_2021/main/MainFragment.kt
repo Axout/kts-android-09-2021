@@ -23,23 +23,23 @@ import androidx.lifecycle.Observer
 import com.axout.kts_android_09_2021.networking.Parameters
 import androidx.navigation.fragment.findNavController
 import com.axout.kts_android_09_2021.data.models.LocalWorkout
-import com.axout.kts_android_09_2021.data.presentation.WorkoutListAdapter
-import com.axout.kts_android_09_2021.data.presentation.WorkoutListViewModel
+import com.axout.kts_android_09_2021.data.presentation.LocalWorkoutListAdapter
+import com.axout.kts_android_09_2021.data.presentation.LocalWorkoutListViewModel
 import com.axout.kts_android_09_2021.main.models.DataModel
-import com.axout.kts_android_09_2021.data.presentation.WorkoutViewModel
+import com.axout.kts_android_09_2021.data.presentation.LocalWorkoutViewModel
 import com.axout.kts_android_09_2021.utils.launchOnStartedState
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val viewModel:              WorkoutsViewModel by viewModels()
     private val viewModelAthlete:       DetailedAthleteViewModel by viewModels()
-    private val viewModelWorkout:       WorkoutViewModel by viewModels()
-    private val viewModelWorkoutList:   WorkoutListViewModel by viewModels()
+    private val viewModelWorkout:       LocalWorkoutViewModel by viewModels()
+    private val viewModelWorkoutList:   LocalWorkoutListViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
 
     private val binding by viewBinding(FragmentMainBinding::bind)
     private var athleteActivitiesAdapter: ComplexDelegatesListAdapter by autoCleared()
-    private var workoutAdapter: WorkoutListAdapter by autoCleared()
+    private var workoutAdapter: LocalWorkoutListAdapter by autoCleared()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,7 +54,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun initListWorkout() {
-        workoutAdapter = WorkoutListAdapter(::navigateToDetailedFragment)
+        workoutAdapter = LocalWorkoutListAdapter(::navigateToDetailedFragment)
         with(binding.activitiesList) {
             val orientation = RecyclerView.VERTICAL
             adapter = workoutAdapter

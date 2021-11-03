@@ -9,9 +9,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
-class WorkoutViewModel : ViewModel() {
+class LocalWorkoutViewModel : ViewModel() {
 
     private val localWorkoutRepository = LocalWorkoutRepository()
 
@@ -44,7 +43,7 @@ class WorkoutViewModel : ViewModel() {
                 localWorkoutRepository.save(localWorkout)
                 saveSuccess.send(Unit)
             } catch (t: Throwable) {
-                Timber.e(t, "workout save error")
+                Log.d("tag","workout save error")
                 saveError.send("workout save error")
             }
         }
