@@ -11,14 +11,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.axout.kts_android_09_2021.R
-import com.axout.kts_android_09_2021.datastore.DatastoreViewModel
-import com.axout.kts_android_09_2021.utils.launchOnStartedState
+import com.axout.kts_android_09_2021.datastore.StartPointViewModel
 import kotlinx.coroutines.launch
 
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     lateinit var handler: Handler
-    private val viewModel by viewModels<DatastoreViewModel>()
+    private val viewModel by viewModels<StartPointViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

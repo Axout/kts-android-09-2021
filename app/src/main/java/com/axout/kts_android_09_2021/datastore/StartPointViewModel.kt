@@ -6,11 +6,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class DatastoreViewModel(
+class StartPointViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
-    private val repository = DatastoreRepository(application)
+    private val repository = StartPointRepository(application)
 
     val firstStartLiveData: Flow<Int>
         get() = repository.observe()

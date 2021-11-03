@@ -4,15 +4,10 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.axout.kts_android_09_2021.R
 import com.axout.kts_android_09_2021.databinding.FragmentOnboardBinding
-import com.axout.kts_android_09_2021.datastore.DatastoreViewModel
-import com.axout.kts_android_09_2021.utils.launchOnStartedState
 import com.google.android.material.tabs.TabLayoutMediator
-import timber.log.Timber
 
 class OnboardFragment : Fragment(R.layout.fragment_onboard) {
 
