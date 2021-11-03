@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class DetailedActivity(
+data class DetailedWorkout(
     val name: String,
     val distance: Float,
     @Json(name = "moving_time")
@@ -23,11 +23,11 @@ data class DetailedActivity(
 @JsonClass(generateAdapter = true)
 data class PhotosSummary(
     val count: Int,
-    val primary: PhotosSummary_primary?
+    val primary: PhotosSummaryPrimary?
 )
 
 @JsonClass(generateAdapter = true)
-data class PhotosSummary_primary(
+data class PhotosSummaryPrimary(
     val urls: Urls?
 )
 

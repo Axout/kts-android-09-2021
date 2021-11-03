@@ -31,11 +31,11 @@ import com.axout.kts_android_09_2021.utils.launchOnStartedState
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
-    private val viewModel: AthleteActivitiesViewModel by viewModels()
-    private val viewModelAthlete: DetailedAthleteViewModel by viewModels()
+    private val viewModel:              WorkoutsViewModel by viewModels()
+    private val viewModelAthlete:       DetailedAthleteViewModel by viewModels()
+    private val viewModelWorkout:       WorkoutViewModel by viewModels()
+    private val viewModelWorkoutList:   WorkoutListViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
-    private val viewModelWorkout by viewModels<WorkoutViewModel>()
-    private val viewModelWorkoutList by viewModels<WorkoutListViewModel>()
 
     private val binding by viewBinding(FragmentMainBinding::bind)
     private var athleteActivitiesAdapter: ComplexDelegatesListAdapter by autoCleared()
@@ -71,7 +71,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun initList() {
         athleteActivitiesAdapter = ComplexDelegatesListAdapter(
-            detailedActivity = { athleteActivity ->
+            detailedWorkout = { athleteActivity ->
                 findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment(athleteActivity.id))
             }
         )
@@ -87,7 +87,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun bindViewModel() {
-        viewModel.athleteActivitiesList.observe(viewLifecycleOwner, Observer {
+        viewModel.workoutsList.observe(viewLifecycleOwner, Observer {
             if (it == null) {
                 Toast.makeText(activity, R.string.no_activities, Toast.LENGTH_LONG).show()
             } else {
@@ -101,7 +101,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             }
         })
-        viewModel.getListActivities(before = Parameters.BEFORE, after = Parameters.AFTER)
+        viewModel.getListWorkouts(before = Parameters.BEFORE, after = Parameters.AFTER)
 
         viewModelAthlete.getLoggedInAthlete()
         viewModelAthlete.detailedAthlete.observe(viewLifecycleOwner, Observer {

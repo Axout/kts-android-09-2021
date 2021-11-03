@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.axout.kts_android_09_2021.data.LocalDetailedWorkoutRepository
 import com.axout.kts_android_09_2021.data.models.LocalDetailedWorkout
-import com.axout.kts_android_09_2021.detailed.DetailedActivity
+import com.axout.kts_android_09_2021.detailed.DetailedWorkout
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -31,19 +31,19 @@ class DetailedWorkoutViewModel : ViewModel() {
 
     fun save(
         id: Long,
-        detailedActivity: DetailedActivity
+        detailedWorkout: DetailedWorkout
     ) {
 
         val localDetailedWorkout = LocalDetailedWorkout(
             id = id,
-            name = detailedActivity.name,
-            distance = detailedActivity.distance,
-            time = detailedActivity.time,
-            avgSpeed = detailedActivity.avgSpeed,
-            maxSpeed = detailedActivity.maxSpeed,
-            elevationGain = detailedActivity.elevationGain,
-            maxElevation = detailedActivity.maxElevation,
-            photo = detailedActivity.photos.primary?.urls?.bigPhoto
+            name = detailedWorkout.name,
+            distance = detailedWorkout.distance,
+            time = detailedWorkout.time,
+            avgSpeed = detailedWorkout.avgSpeed,
+            maxSpeed = detailedWorkout.maxSpeed,
+            elevationGain = detailedWorkout.elevationGain,
+            maxElevation = detailedWorkout.maxElevation,
+            photo = detailedWorkout.photos.primary?.urls?.bigPhoto
         )
 
         viewModelScope.launch {

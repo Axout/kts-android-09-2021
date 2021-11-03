@@ -25,7 +25,7 @@ import kotlinx.coroutines.flow.collect
 
 class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
-    private val viewModel: DetailedActivityViewModel by viewModels()
+    private val viewModel: com.axout.kts_android_09_2021.detailed.DetailedWorkoutViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
     private val args: DetailedFragmentArgs by navArgs()
     private val viewModelDetailedWorkout: DetailedWorkoutViewModel by viewModels()
@@ -80,7 +80,7 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
         viewModel.getActivityById(id = args.id, include_all_efforts = true)
 
-        viewModel.detailedActivity.observe(viewLifecycleOwner, Observer { detailedActivity ->
+        viewModel.detailedWorkout.observe(viewLifecycleOwner, Observer { detailedActivity ->
             if (detailedActivity == null) {
                 Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_LONG).show()
             } else {

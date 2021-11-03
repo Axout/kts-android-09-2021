@@ -1,13 +1,13 @@
 package com.axout.kts_android_09_2021.networking
 
-import com.axout.kts_android_09_2021.detailed.DetailedActivity
+import com.axout.kts_android_09_2021.detailed.DetailedWorkout
 
-class DetailedActivityRepository {
+class DetailedWorkoutRepository {
 
-    suspend fun getActivityById(
+    suspend fun getById(
         id: Long,
         include_all_efforts: Boolean
-    ): DetailedActivity {
+    ): DetailedWorkout {
         return Networking.stravaApi.getActivityById(id, include_all_efforts)
     }
 }
