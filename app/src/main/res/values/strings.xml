@@ -43,4 +43,6 @@
 	</string-array>
 	<string name="no_activities">You do not have any training yet</string>
 	<string name="not_connected">Not connected</string>
+	<string name="page_title">My workouts</string>
+	<string name="profile" translatable="false">Profile</string>
 </resources>
