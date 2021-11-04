@@ -2,7 +2,6 @@ package com.axout.kts_android_09_2021.splashscreen
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -12,11 +11,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.axout.kts_android_09_2021.R
 import com.axout.kts_android_09_2021.datastore.StartPointViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
-    lateinit var handler: Handler
     private val viewModel by viewModels<StartPointViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,10 +27,10 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        handler = Handler()
-        handler.postDelayed({
+        viewLifecycleOwner.lifecycleScope.launch {
             selectNextFragment()
-        }, 3000)
+            delay(3000)
+        }
     }
 
     private fun selectNextFragment() {
