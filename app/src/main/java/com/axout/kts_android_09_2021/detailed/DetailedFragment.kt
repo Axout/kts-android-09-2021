@@ -21,14 +21,17 @@ import com.axout.kts_android_09_2021.main.models.DataModel
 import com.axout.kts_android_09_2021.utils.launchOnStartedState
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import kotlinx.android.synthetic.main.fragment_detailed.view.*
+import kotlinx.android.synthetic.main.fragment_main.view.*
+import kotlinx.android.synthetic.main.fragment_main.view.topAppBar
 import kotlinx.coroutines.flow.collect
 
 class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
-    private val viewModel: com.axout.kts_android_09_2021.detailed.DetailedWorkoutViewModel by viewModels()
+    private val viewModel: DetailedWorkoutViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
     private val args: DetailedFragmentArgs by navArgs()
-    private val viewModelDetailedWorkout: LocalDetailedWorkoutViewModel by viewModels()
+    private val viewModelLocal: LocalDetailedWorkoutViewModel by viewModels()
     private val binding by viewBinding(FragmentDetailedBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,20 +40,20 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
         if (isOnline(context!!)) {
             bindViewModel()
         } else {
-            viewModelDetailedWorkout.loadWorkoutById(args.id)
+            viewModelLocal.loadWorkoutById(args.id)
             bindViewModelDetailedWorkout()
         }
     }
 
     private fun bindViewModelDetailedWorkout() {
         viewLifecycleOwner.launchOnStartedState {
-            viewModelDetailedWorkout.workoutFlow.collect { detailedWorkout ->
+            viewModelLocal.workoutFlow.collect { detailedWorkout ->
                 if (detailedWorkout == null) {
                     Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_LONG).show()
                 } else {
-                    (dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
+                    //(dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
                     binding.progress.isVisible = false
-                    binding.tvActivityName.text = detailedWorkout.name
+                    binding.appBar.topAppBar.title = detailedWorkout.name
                     binding.tvDistance.text = convertDistance(detailedWorkout.distance)
                     binding.tvTime.text = convertTime(detailedWorkout.time)
                     (detailedWorkout.avgSpeed.toString() + " m/s").also { binding.tvAvgSpeed.text = it }
@@ -59,11 +62,11 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
                     (detailedWorkout.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
 
                     activity?.let {
-                        Glide.with(it)
-                            .load(dataModel.profile.value)
-                            .transform(CircleCrop())
-                            .placeholder(R.drawable.avatar_m)
-                            .into(binding.ivAvatar)
+//                        Glide.with(it)
+//                            .load(dataModel.profile.value)
+//                            .transform(CircleCrop())
+//                            .placeholder(R.drawable.avatar_m)
+//                            .into(binding.appBar.topAppBar.menu.getItem(R.id.profile).icon)
 
                         Glide.with(it)
                             .load(detailedWorkout.photo)
@@ -84,9 +87,9 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
             if (detailedActivity == null) {
                 Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_LONG).show()
             } else {
-                (dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
+                //(dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
                 binding.progress.isVisible = false
-                binding.tvActivityName.text = detailedActivity.name
+                binding.appBar.topAppBar.title = detailedActivity.name
                 binding.tvDistance.text = convertDistance(detailedActivity.distance)
                 binding.tvTime.text = convertTime(detailedActivity.time)
                 (detailedActivity.avgSpeed.toString() + " m/s").also { binding.tvAvgSpeed.text = it }
@@ -94,11 +97,11 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
                 (detailedActivity.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
                 (detailedActivity.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
 
-                Glide.with(this)
-                    .load(dataModel.profile.value)
-                    .transform(CircleCrop())
-                    .placeholder(R.drawable.avatar_m)
-                    .into(binding.ivAvatar)
+//                Glide.with(this)
+//                    .load(dataModel.profile.value)
+//                    .transform(CircleCrop())
+//                    .placeholder(R.drawable.avatar_m)
+//                    .into(binding.ivAvatar)
 
                 Glide.with(this)
                     .load(detailedActivity.photos.primary?.urls?.bigPhoto)
@@ -106,7 +109,7 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
                     .placeholder(R.drawable.route_2)
                     .into(binding.ivPhoto)
 
-                viewModelDetailedWorkout.save(args.id, detailedActivity)
+                viewModelLocal.save(args.id, detailedActivity)
             }
         })
     }
