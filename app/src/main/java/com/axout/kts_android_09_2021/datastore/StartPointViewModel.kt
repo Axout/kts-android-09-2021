@@ -12,8 +12,8 @@ class StartPointViewModel(
 
     private val repository = StartPointRepository(application)
 
-    val firstStartLiveData: Flow<Int>
-        get() = repository.observe()
+//    val startPointLiveData: Flow<Int>
+//        get() = repository.observe()
 
     fun save(status: Int) {
         viewModelScope.launch {
@@ -24,4 +24,15 @@ class StartPointViewModel(
     suspend fun read(): Int {
         return repository.read()
     }
+
+//    fun saveToken(token: String) {
+//        viewModelScope.launch {
+//            repository.saveToken(token)
+//        }
+//    }
+
+//
+//    suspend fun readToken(): String {
+//        return repository.readToken()
+//    }
 }

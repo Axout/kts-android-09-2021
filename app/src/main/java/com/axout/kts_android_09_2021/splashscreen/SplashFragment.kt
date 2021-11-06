@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
-    private val viewModel by viewModels<StartPointViewModel>()
+    private val viewModel: StartPointViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,19 +33,24 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     private fun selectNextFragment() {
         lifecycleScope.launch {
-            val status = viewModel.read()
-            Log.d("tag", "status = $status")
-            val action =
-                when(status) {
-                    1 -> {
-                        viewModel.save(2)
-                        SplashFragmentDirections.actionSplashFragmentToOnboardFragment()
+            try {
+                val status = viewModel.read()
+                Log.d("tag", "status = $status")
+                val action =
+                    when (status) {
+                        1 -> {
+                            viewModel.save(2)
+                            SplashFragmentDirections.actionSplashFragmentToOnboardFragment()
+                        }
+                        2 -> SplashFragmentDirections.actionSplashFragmentToAuthFragment()
+                        3 -> SplashFragmentDirections.actionSplashFragmentToMainFragment()
+                        else -> SplashFragmentDirections.actionSplashFragmentToOnboardFragment()
                     }
-                    2 -> SplashFragmentDirections.actionSplashFragmentToAuthFragment()
-                    3 -> SplashFragmentDirections.actionSplashFragmentToMainFragment()
-                    else -> SplashFragmentDirections.actionSplashFragmentToOnboardFragment()
-                }
-            findNavController().navigate(action)
+                findNavController().navigate(action)
+            } catch (t: Throwable) {
+                Log.e("tag", t.toString())
+                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToAuthFragment())
+            }
         }
     }
 

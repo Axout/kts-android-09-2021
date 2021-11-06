@@ -29,4 +29,5 @@
     <string name="no_activities">У вас ещё нет тренировок</string>
     <string name="not_connected">Нет соединения с интернетом</string>
 	<string name="page_title">Мои тренировки</string>
+    <string name="distance_m">преодолел</string>
 </resources>

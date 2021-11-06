@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             if (it) {
                 //Toast.makeText(this,"internet connected", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this,"no internet connection", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,R.string.not_connected, Toast.LENGTH_SHORT).show()
             }
         })
     }
