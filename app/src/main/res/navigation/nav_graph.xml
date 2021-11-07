@@ -69,5 +69,9 @@
 		<argument
 			android:name="id"
 			app:argType="long"/>
+		<action
+			android:id="@+id/action_detailedFragment_pop"
+			app:popUpTo="@id/detailedFragment"
+			app:popUpToInclusive="true" />
 	</fragment>
 </navigation>

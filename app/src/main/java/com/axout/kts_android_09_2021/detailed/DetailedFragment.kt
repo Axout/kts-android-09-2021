@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.axout.kts_android_09_2021.R
@@ -35,6 +36,10 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
         super.onViewCreated(view, savedInstanceState)
 
         bindViewModel()
+
+        binding.topAppBar.setNavigationOnClickListener {
+            findNavController().navigate(DetailedFragmentDirections.actionDetailedFragmentPop())
+        }
     }
 
     private fun bindViewModel() {
