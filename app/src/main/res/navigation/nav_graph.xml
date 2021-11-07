@@ -58,7 +58,11 @@
 		tools:layout="@layout/fragment_main">
 		<action
 			android:id="@+id/action_mainFragment_to_detailedFragment"
-			app:destination="@id/detailedFragment" />
+			app:destination="@id/detailedFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
 	</fragment>
 
 	<fragment
@@ -71,6 +75,10 @@
 			app:argType="long"/>
 		<action
 			android:id="@+id/action_detailedFragment_pop"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"
 			app:popUpTo="@id/detailedFragment"
 			app:popUpToInclusive="true" />
 	</fragment>
