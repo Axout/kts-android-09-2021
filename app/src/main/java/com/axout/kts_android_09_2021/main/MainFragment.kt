@@ -51,6 +51,16 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             initListWorkout()
             bindViewModelWorkout()
         }
+
+        binding.topAppBar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.profile -> {
+                    findNavController().navigate(MainFragmentDirections.actionMainFragmentToProfileFragment())
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun initListWorkout() {
