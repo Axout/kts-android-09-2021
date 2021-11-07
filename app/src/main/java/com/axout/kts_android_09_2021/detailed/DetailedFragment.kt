@@ -19,7 +19,9 @@ import com.axout.kts_android_09_2021.R
 import com.axout.kts_android_09_2021.databinding.FragmentDetailedBinding
 import com.axout.kts_android_09_2021.main.models.DataModel
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 import kotlinx.android.synthetic.main.fragment_main.view.topAppBar
 
 class DetailedFragment : Fragment(R.layout.fragment_detailed) {
@@ -57,11 +59,18 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
     //                    .placeholder(R.drawable.avatar_m)
     //                    .into(binding.ivAvatar)
 
-                Glide.with(this)
-                    .load(detailedWorkout.photo)
-                    .transform(CircleCrop())
-                    .placeholder(R.drawable.route_2)
-                    .into(binding.ivPhoto)
+                if (detailedWorkout.photo != null) {
+                    Glide.with(this)
+                        .load(detailedWorkout.photo)
+                        .transform(CircleCrop())
+                        .placeholder(R.drawable.route_back)
+                        .into(binding.ivPhoto)
+                } else {
+                    Glide.with(this)
+                        .load(R.drawable.route_2)
+                        .placeholder(R.drawable.route_back)
+                        .into(binding.ivPhoto)
+                }
 
             } catch (t: Throwable) {
                 Toast.makeText(context, getString(R.string.not_workout), Toast.LENGTH_SHORT).show()
