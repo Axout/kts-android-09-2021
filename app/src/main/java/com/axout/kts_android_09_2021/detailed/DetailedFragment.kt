@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -15,101 +16,55 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.axout.kts_android_09_2021.R
-import com.axout.kts_android_09_2021.data.presentation.LocalDetailedWorkoutViewModel
 import com.axout.kts_android_09_2021.databinding.FragmentDetailedBinding
 import com.axout.kts_android_09_2021.main.models.DataModel
-import com.axout.kts_android_09_2021.utils.launchOnStartedState
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import kotlinx.android.synthetic.main.fragment_detailed.view.*
-import kotlinx.android.synthetic.main.fragment_main.view.*
 import kotlinx.android.synthetic.main.fragment_main.view.topAppBar
-import kotlinx.coroutines.flow.collect
 
 class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
     private val viewModel: DetailedWorkoutViewModel by viewModels()
-    private val dataModel: DataModel by activityViewModels()
+//    private val dataModel: DataModel by activityViewModels()
     private val args: DetailedFragmentArgs by navArgs()
-    private val viewModelLocal: LocalDetailedWorkoutViewModel by viewModels()
     private val binding by viewBinding(FragmentDetailedBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (isOnline(context!!)) {
-            bindViewModel()
-        } else {
-            viewModelLocal.loadWorkoutById(args.id)
-            bindViewModelDetailedWorkout()
-        }
-    }
-
-    private fun bindViewModelDetailedWorkout() {
-        viewLifecycleOwner.launchOnStartedState {
-            viewModelLocal.workoutFlow.collect { detailedWorkout ->
-                if (detailedWorkout == null) {
-                    Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_LONG).show()
-                } else {
-                    //(dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
-                    binding.progress.isVisible = false
-                    binding.appBar.topAppBar.title = detailedWorkout.name
-                    binding.tvDistance.text = convertDistance(detailedWorkout.distance)
-                    binding.tvTime.text = convertTime(detailedWorkout.time)
-                    (detailedWorkout.avgSpeed.toString() + " m/s").also { binding.tvAvgSpeed.text = it }
-                    (detailedWorkout.maxSpeed.toString() + " m/s").also { binding.tvMaxSpeed.text = it }
-                    (detailedWorkout.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
-                    (detailedWorkout.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
-
-                    activity?.let {
-//                        Glide.with(it)
-//                            .load(dataModel.profile.value)
-//                            .transform(CircleCrop())
-//                            .placeholder(R.drawable.avatar_m)
-//                            .into(binding.appBar.topAppBar.menu.getItem(R.id.profile).icon)
-
-                        Glide.with(it)
-                            .load(detailedWorkout.photo)
-                            .transform(CircleCrop())
-                            .placeholder(R.drawable.route_2)
-                            .into(binding.ivPhoto)
-                    }
-                }
-            }
-        }
+        bindViewModel()
     }
 
     private fun bindViewModel() {
 
-        viewModel.getActivityById(id = args.id, include_all_efforts = true)
+        viewModel.getActivityById(online = isOnline(context!!), id = args.id)
 
-        viewModel.detailedWorkout.observe(viewLifecycleOwner, Observer { detailedActivity ->
-            if (detailedActivity == null) {
-                Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_LONG).show()
-            } else {
+        viewModel.detailedWorkout.observe(viewLifecycleOwner, Observer { detailedWorkout ->
+            try {
                 //(dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
                 binding.progress.isVisible = false
-                binding.appBar.topAppBar.title = detailedActivity.name
-                binding.tvDistance.text = convertDistance(detailedActivity.distance)
-                binding.tvTime.text = convertTime(detailedActivity.time)
-                (detailedActivity.avgSpeed.toString() + " m/s").also { binding.tvAvgSpeed.text = it }
-                (detailedActivity.maxSpeed.toString() + " m/s").also { binding.tvMaxSpeed.text = it }
-                (detailedActivity.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
-                (detailedActivity.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
+                binding.appBar.topAppBar.title = detailedWorkout.name
+                binding.tvDistance.text = convertDistance(detailedWorkout.distance)
+                binding.tvTime.text = convertTime(detailedWorkout.time)
+                (detailedWorkout.avgSpeed.toString() + " m/s").also { binding.tvAvgSpeed.text = it }
+                (detailedWorkout.maxSpeed.toString() + " m/s").also { binding.tvMaxSpeed.text = it }
+                (detailedWorkout.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
+                (detailedWorkout.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
 
-//                Glide.with(this)
-//                    .load(dataModel.profile.value)
-//                    .transform(CircleCrop())
-//                    .placeholder(R.drawable.avatar_m)
-//                    .into(binding.ivAvatar)
+    //                Glide.with(this)
+    //                    .load(dataModel.profile.value)
+    //                    .transform(CircleCrop())
+    //                    .placeholder(R.drawable.avatar_m)
+    //                    .into(binding.ivAvatar)
 
                 Glide.with(this)
-                    .load(detailedActivity.photos.primary?.urls?.bigPhoto)
+                    .load(detailedWorkout.photo)
                     .transform(CircleCrop())
                     .placeholder(R.drawable.route_2)
                     .into(binding.ivPhoto)
 
-                viewModelLocal.save(args.id, detailedActivity)
+            } catch (t: Throwable) {
+                Toast.makeText(context, getString(R.string.not_workout), Toast.LENGTH_SHORT).show()
             }
         })
     }

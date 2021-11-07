@@ -30,4 +30,5 @@
     <string name="not_connected">Нет соединения с интернетом</string>
 	<string name="page_title">Мои тренировки</string>
     <string name="distance_m">преодолел</string>
+	<string name="not_workout">Тренировка ещё не загружена</string>
 </resources>
