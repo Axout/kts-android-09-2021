@@ -1,21 +1,21 @@
 package com.axout.kts_android_09_2021.splashscreen
 
+import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.axout.kts_android_09_2021.R
-import com.axout.kts_android_09_2021.datastore.StartPointViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
-    private val viewModel: StartPointViewModel by viewModels()
+    private val sharedPreferences by lazy {
+        requireContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,30 +32,23 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     }
 
     private fun selectNextFragment() {
-        lifecycleScope.launch {
-            try {
-                val status = viewModel.read()
-                Log.d("tag", "status = $status")
-                val action =
-                    when (status) {
-                        1 -> {
-                            viewModel.save(2)
-                            SplashFragmentDirections.actionSplashFragmentToOnboardFragment()
-                        }
-                        2 -> SplashFragmentDirections.actionSplashFragmentToAuthFragment()
-                        3 -> SplashFragmentDirections.actionSplashFragmentToMainFragment()
-                        else -> SplashFragmentDirections.actionSplashFragmentToOnboardFragment()
-                    }
-                findNavController().navigate(action)
-            } catch (t: Throwable) {
-                Log.e("tag", t.toString())
-                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToAuthFragment())
+        val action =
+            when (sharedPreferences.getInt(STATUS, 1)) {
+                1 -> {
+                    sharedPreferences.edit()
+                        .putInt(STATUS, 2)
+                        .apply()
+                    SplashFragmentDirections.actionSplashFragmentToOnboardFragment()
+                }
+                2 -> SplashFragmentDirections.actionSplashFragmentToAuthFragment()
+                3 -> SplashFragmentDirections.actionSplashFragmentToMainFragment()
+                else -> SplashFragmentDirections.actionSplashFragmentToOnboardFragment()
             }
-        }
+        findNavController().navigate(action)
     }
 
-    override fun onStop() {
-        super.onStop()
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
+    companion object {
+        private const val SHARED_PREF_NAME = "shared_pref_name"
+        private const val STATUS = "status"
     }
 }

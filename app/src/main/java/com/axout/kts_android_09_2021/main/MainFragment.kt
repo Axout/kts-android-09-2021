@@ -1,6 +1,7 @@
 package com.axout.kts_android_09_2021.main
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -43,6 +44,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
 
         if (isOnline(context!!)) {
             initList()
