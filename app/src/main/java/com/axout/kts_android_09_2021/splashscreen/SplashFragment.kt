@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.axout.kts_android_09_2021.R
+import com.axout.kts_android_09_2021.authorize.AuthToken
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -41,7 +42,10 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
                     SplashFragmentDirections.actionSplashFragmentToOnboardFragment()
                 }
                 2 -> SplashFragmentDirections.actionSplashFragmentToAuthFragment()
-                3 -> SplashFragmentDirections.actionSplashFragmentToMainFragment()
+                3 -> {
+                    AuthToken.token = sharedPreferences.getString(TOKEN, null)
+                    SplashFragmentDirections.actionSplashFragmentToMainFragment()
+                }
                 else -> SplashFragmentDirections.actionSplashFragmentToOnboardFragment()
             }
         findNavController().navigate(action)
@@ -50,5 +54,6 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     companion object {
         private const val SHARED_PREF_NAME = "shared_pref_name"
         private const val STATUS = "status"
+        private const val TOKEN = "token"
     }
 }
