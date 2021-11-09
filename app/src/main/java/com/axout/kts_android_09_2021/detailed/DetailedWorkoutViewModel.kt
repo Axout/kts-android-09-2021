@@ -1,6 +1,5 @@
 package com.axout.kts_android_09_2021.detailed
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,13 +23,10 @@ class DetailedWorkoutViewModel: ViewModel() {
         currentGetDetailedWorkoutJob?.cancel()
         currentGetDetailedWorkoutJob = viewModelScope.launch {
             runCatching {
-                Log.d("tag", "getActivityById()")
                 repository.getById(online, id)
             }.onSuccess {
-                Log.d("tag", "onSuccess: $it")
                 localDetailedWorkoutLiveData.postValue(it)
             }.onFailure {
-                Log.d("tag", "onFailure: $it")
                 localDetailedWorkoutLiveData.postValue(null)
             }
         }

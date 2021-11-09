@@ -3,7 +3,6 @@ package com.axout.kts_android_09_2021.authorize
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.axout.kts_android_09_2021.R
 import com.axout.kts_android_09_2021.databinding.FragmentAuthBinding
-import com.axout.kts_android_09_2021.splashscreen.SplashFragment
 import com.axout.kts_android_09_2021.utils.toast
 import net.openid.appauth.AuthorizationException
 import net.openid.appauth.AuthorizationResponse

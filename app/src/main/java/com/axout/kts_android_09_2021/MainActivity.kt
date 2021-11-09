@@ -12,11 +12,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         NetworkLiveData.observe(this, Observer {
-            if (it) {
-                //Toast.makeText(this,"internet connected", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this,R.string.not_connected, Toast.LENGTH_SHORT).show()
-            }
+            if (!it) Toast.makeText(this,R.string.not_connected, Toast.LENGTH_SHORT).show()
         })
     }
 }

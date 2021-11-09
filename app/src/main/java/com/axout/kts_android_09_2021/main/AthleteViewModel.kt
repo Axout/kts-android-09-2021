@@ -1,6 +1,5 @@
 package com.axout.kts_android_09_2021.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,13 +23,10 @@ class AthleteViewModel: ViewModel() {
         currentDetailedAthleteJob?.cancel()
         currentDetailedAthleteJob = viewModelScope.launch {
             runCatching {
-                Log.d("tag", "getAthletes()")
                 repository.getLoggedInAthlete()
             }.onSuccess {
-                Log.d("tag", "onSuccess: $it")
                 athleteLiveData.postValue(it)
             }.onFailure {
-                Log.d("tag", "onFailure: $it")
                 athleteLiveData.postValue(null)
             }
         }

@@ -28,7 +28,6 @@ import kotlinx.android.synthetic.main.fragment_main.view.topAppBar
 class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
     private val viewModel: DetailedWorkoutViewModel by viewModels()
-//    private val dataModel: DataModel by activityViewModels()
     private val args: DetailedFragmentArgs by navArgs()
     private val binding by viewBinding(FragmentDetailedBinding::bind)
 
@@ -48,7 +47,6 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
 
         viewModel.detailedWorkout.observe(viewLifecycleOwner, Observer { detailedWorkout ->
             try {
-                //(dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
                 binding.progress.isVisible = false
                 binding.appBar.topAppBar.title = detailedWorkout.name
                 binding.tvDistance.text = convertDistance(detailedWorkout.distance)
@@ -57,12 +55,6 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
                 (detailedWorkout.maxSpeed.toString() + " m/s").also { binding.tvMaxSpeed.text = it }
                 (detailedWorkout.elevationGain.toString() + " m").also { binding.tvElevationGain.text = it }
                 (detailedWorkout.maxElevation.toString() + " m").also { binding.tvMaxElevation.text = it }
-
-    //                Glide.with(this)
-    //                    .load(dataModel.profile.value)
-    //                    .transform(CircleCrop())
-    //                    .placeholder(R.drawable.avatar_m)
-    //                    .into(binding.ivAvatar)
 
                 if (detailedWorkout.photo != null) {
                     Glide.with(this)

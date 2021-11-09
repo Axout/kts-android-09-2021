@@ -1,6 +1,5 @@
 package com.axout.kts_android_09_2021.data.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.axout.kts_android_09_2021.data.LocalWorkoutRepository
@@ -39,11 +38,9 @@ class LocalWorkoutViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
-                Log.d("tag","workout save success")
                 localWorkoutRepository.save(localWorkout)
                 saveSuccess.send(Unit)
             } catch (t: Throwable) {
-                Log.d("tag","workout save error")
                 saveError.send("workout save error")
             }
         }

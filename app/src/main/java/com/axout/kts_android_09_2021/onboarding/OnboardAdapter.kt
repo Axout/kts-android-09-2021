@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class OnboardAdapter(activity: AppCompatActivity, val itemsCount: Int) :
+class OnboardAdapter(activity: AppCompatActivity, private val itemsCount: Int) :
     FragmentStateAdapter(activity) {
 
     override fun getItemCount(): Int {

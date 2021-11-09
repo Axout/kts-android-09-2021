@@ -32,10 +32,10 @@ import com.axout.kts_android_09_2021.utils.launchOnStartedState
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
-    private val viewModelWorkouts:      WorkoutsViewModel by viewModels()
-    private val viewModelAthlete:       AthleteViewModel by viewModels()
-    private val viewModelLocalWorkout:  LocalWorkoutViewModel by viewModels()
-    private val viewModelWorkoutList:   LocalWorkoutListViewModel by viewModels()
+    private val viewModelWorkouts: WorkoutsViewModel by viewModels()
+    private val viewModelAthlete: AthleteViewModel by viewModels()
+    private val viewModelLocalWorkout: LocalWorkoutViewModel by viewModels()
+    private val viewModelWorkoutList: LocalWorkoutListViewModel by viewModels()
     private val dataModel: DataModel by activityViewModels()
 
     private val binding by viewBinding(FragmentMainBinding::bind)
@@ -83,8 +83,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun initList() {
         workoutsAdapter = ComplexDelegatesListAdapter(
-            detailedWorkout = { athleteActivity ->
-                findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment(athleteActivity.id))
+            detailedWorkout = { workout ->
+                findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailedFragment(workout.id))
             }
         )
 
@@ -101,7 +101,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun bindViewModel() {
         viewModelWorkouts.workoutsList.observe(viewLifecycleOwner, Observer {
             if (it == null) {
-                Toast.makeText(activity, R.string.no_activities, Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, R.string.no_activities, Toast.LENGTH_SHORT).show()
             } else {
                 if (it.isEmpty()) {
                     Log.d("tag","list is empty")
@@ -118,7 +118,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         viewModelAthlete.getLoggedInAthlete()
         viewModelAthlete.athlete.observe(viewLifecycleOwner, Observer {
             if (it == null) {
-                Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_SHORT).show()
             } else {
                 dataModel.firstname.value = it.firstname
                 dataModel.lastname.value = it.lastname
@@ -130,7 +130,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun bindViewModelWorkout() {
         viewLifecycleOwner.launchOnStartedState {
             viewModelWorkoutList.workoutsFlow.collect {
-                localWorkoutAdapter.items = it
+                localWorkoutAdapter.items = it.reversed()
             }
         }
     }
