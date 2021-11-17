@@ -1,7 +1,6 @@
 package com.axout.kts_android_09_2021.authorize
 
 import android.net.Uri
-import android.util.Log
 import net.openid.appauth.AuthorizationRequest
 import net.openid.appauth.AuthorizationService
 import net.openid.appauth.AuthorizationServiceConfiguration
@@ -41,7 +40,6 @@ class AuthRepository {
                     //save access token
                     val accessToken = response.accessToken.orEmpty()
                     AuthToken.token = accessToken
-                    Log.d("tag","Auth.token: ${AuthToken.token}")
                     onComplete()
                 }
                 else -> onError()

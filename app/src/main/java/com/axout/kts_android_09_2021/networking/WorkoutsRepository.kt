@@ -1,13 +1,13 @@
 package com.axout.kts_android_09_2021.networking
 
-import com.axout.kts_android_09_2021.main.models.AthleteActivity
+import com.axout.kts_android_09_2021.main.models.Workout
 
-class AthleteActivitiesRepository {
+class WorkoutsRepository {
 
-    suspend fun getAthleteActivities(
+    suspend fun getWorkouts(
         before: Int,
         after: Int
-    ): List<AthleteActivity> {
+    ): List<Workout> {
         return Networking.stravaApi.getLoggedInAthleteActivities(before, after)
     }
 }

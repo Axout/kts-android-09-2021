@@ -1,41 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/onboardFragment">
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/splashFragment">
 
-    <fragment
-        android:id="@+id/onboardFragment"
-        android:name="com.axout.kts_android_09_2021.onboarding.OnboardFragment"
-        android:label="OnboardFragment"
-        tools:layout="@layout/fragment_onboard">
-        <action android:id="@+id/action_onboardFragment_to_authFragment" app:destination="@id/authFragment"
-                app:popUpTo="@id/onboardFragment" app:popUpToInclusive="true"/>
-    </fragment>
+	<fragment
+		android:id="@+id/splashFragment"
+		android:name="com.axout.kts_android_09_2021.splashscreen.SplashFragment"
+		android:label="fragment_splash"
+		tools:layout="@layout/fragment_splash" >
+		<action
+			android:id="@+id/action_splashFragment_to_onboardFragment"
+			app:destination="@id/onboardFragment"
+			app:popUpTo="@id/splashFragment"
+			app:popUpToInclusive="true" />
+		<action
+			android:id="@+id/action_splashFragment_to_authFragment"
+			app:destination="@id/authFragment"
+			app:popUpTo="@id/splashFragment"
+			app:popUpToInclusive="true" />
+		<action
+			android:id="@+id/action_splashFragment_to_mainFragment"
+			app:destination="@id/mainFragment"
+			app:popUpTo="@id/splashFragment"
+			app:popUpToInclusive="true" />
+	</fragment>
 
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.axout.kts_android_09_2021.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action android:id="@+id/action_loginFragment_to_authFragment" app:destination="@id/authFragment"
-                app:popUpTo="@id/loginFragment" app:popUpToInclusive="true"/>
-    </fragment>
+	<fragment
+		android:id="@+id/onboardFragment"
+		android:name="com.axout.kts_android_09_2021.onboarding.OnboardFragment"
+		android:label="fragment_onboard"
+		tools:layout="@layout/fragment_onboard">
+		<action
+			android:id="@+id/action_onboardFragment_to_authFragment"
+			app:destination="@id/authFragment"
+			app:popUpTo="@id/onboardFragment"
+			app:popUpToInclusive="true" />
+	</fragment>
 
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.axout.kts_android_09_2021.main.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action android:id="@+id/action_mainFragment_to_detailedFragment" app:destination="@id/detailedFragment"/>
-    </fragment>
-    <fragment android:id="@+id/authFragment" android:name="com.axout.kts_android_09_2021.authorize.AuthFragment"
-              android:label="AuthFragment">
-        <action android:id="@+id/action_authFragment_to_mainFragment" app:destination="@id/mainFragment"
-                app:popUpTo="@id/authFragment" app:popUpToInclusive="true"/>
-    </fragment>
-    <fragment android:id="@+id/detailedFragment" android:name="com.axout.kts_android_09_2021.detailed.DetailedFragment"
-              android:label="fragment_detailed" tools:layout="@layout/fragment_detailed"/>
+	<fragment
+		android:id="@+id/authFragment"
+		android:name="com.axout.kts_android_09_2021.authorize.AuthFragment"
+		android:label="fragment_auth"
+		tools:layout="@layout/fragment_auth">
+		<action
+			android:id="@+id/action_authFragment_to_mainFragment"
+			app:destination="@id/mainFragment"
+			app:popUpTo="@id/authFragment"
+			app:popUpToInclusive="true" />
+	</fragment>
+
+	<fragment
+		android:id="@+id/mainFragment"
+		android:name="com.axout.kts_android_09_2021.main.MainFragment"
+		android:label="fragment_main"
+		tools:layout="@layout/fragment_main">
+		<action
+			android:id="@+id/action_mainFragment_to_detailedFragment"
+			app:destination="@id/detailedFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+		<action
+			android:id="@+id/action_mainFragment_to_profileFragment"
+			app:destination="@id/profileFragment"
+			app:enterAnim="@anim/slide_in_top"
+			app:exitAnim="@anim/slide_out_bottom"
+			app:popEnterAnim="@anim/slide_in_bottom"
+			app:popExitAnim="@anim/slide_out_top" />
+	</fragment>
+
+	<fragment
+		android:id="@+id/detailedFragment"
+		android:name="com.axout.kts_android_09_2021.detailed.DetailedFragment"
+		android:label="fragment_detailed"
+		tools:layout="@layout/fragment_detailed">
+		<argument
+			android:name="id"
+			app:argType="long"/>
+		<action
+			android:id="@+id/action_detailedFragment_pop"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"
+			app:popUpTo="@id/detailedFragment"
+			app:popUpToInclusive="true" />
+	</fragment>
+	<fragment
+		android:id="@+id/profileFragment"
+		android:name="com.axout.kts_android_09_2021.profile.ProfileFragment"
+		android:label="fragment_profile"
+		tools:layout="@layout/fragment_profile" >
+		<action
+			android:id="@+id/action_profileFragment_pop"
+			app:popUpTo="@id/profileFragment"
+			app:popUpToInclusive="true" />
+	</fragment>
 </navigation>

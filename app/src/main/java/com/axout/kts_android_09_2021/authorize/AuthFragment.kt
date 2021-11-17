@@ -1,5 +1,6 @@
 package com.axout.kts_android_09_2021.authorize
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.isVisible
@@ -17,6 +18,9 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     private val viewModel: AuthViewModel by viewModels()
     private val binding by viewBinding(FragmentAuthBinding::bind)
+    private val sharedPreferences by lazy {
+        requireContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -44,8 +48,16 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         viewModel.openAuthPageLiveData.observe(viewLifecycleOwner, ::openAuthPage)
         viewModel.toastLiveData.observe(viewLifecycleOwner, ::toast)
         viewModel.authSuccessLiveData.observe(viewLifecycleOwner) {
+            saveToken()
             findNavController().navigate(AuthFragmentDirections.actionAuthFragmentToMainFragment())
         }
+    }
+
+    private fun saveToken() {
+        sharedPreferences.edit()
+            .putString(TOKEN, AuthToken.token)
+            .putInt(STATUS, 3)
+            .apply()
     }
 
     private fun updateIsLoading(isLoading: Boolean) = with(binding) {
@@ -58,5 +70,8 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     companion object {
         private const val AUTH_REQUEST_CODE = 342
+        private const val SHARED_PREF_NAME = "shared_pref_name"
+        private const val STATUS = "status"
+        private const val TOKEN = "token"
     }
 }

@@ -14,6 +14,7 @@ class OnboardFragment : Fragment(R.layout.fragment_onboard) {
     private val binding by viewBinding(FragmentOnboardBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val onboardAdapter = OnboardAdapter(activity as AppCompatActivity, resources.getStringArray(R.array.onboard_names).size)
         binding.onboardViewPager.adapter = onboardAdapter
