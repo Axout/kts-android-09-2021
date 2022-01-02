@@ -21,7 +21,6 @@ import com.axout.kts_android_09_2021.R
 import com.axout.kts_android_09_2021.databinding.FragmentMainBinding
 import com.axout.kts_android_09_2021.utils.autoCleared
 import androidx.lifecycle.Observer
-import com.axout.kts_android_09_2021.networking.Parameters
 import androidx.navigation.fragment.findNavController
 import com.axout.kts_android_09_2021.data.models.LocalWorkout
 import com.axout.kts_android_09_2021.data.presentation.LocalWorkoutListAdapter
@@ -113,7 +112,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             }
         })
-        viewModelWorkouts.getListWorkouts(before = Parameters.BEFORE, after = Parameters.AFTER)
+        viewModelWorkouts.getListWorkouts(before = (System.currentTimeMillis() / 1000).toInt(), after = 0)
 
         viewModelAthlete.getLoggedInAthlete()
         viewModelAthlete.athlete.observe(viewLifecycleOwner, Observer {
