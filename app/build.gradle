@@ -42,18 +42,18 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
 
     //ViewBinding by Kirill Rozov
-    implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.0-beta01'
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.4'
     //Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
     //ViewModel
-    def lifecycleVersion = '2.4.0'
-    implementation 'androidx.fragment:fragment-ktx:1.3.6'
+    def lifecycleVersion = '2.4.1'
+    implementation 'androidx.fragment:fragment-ktx:1.4.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
@@ -62,17 +62,17 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     //Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.4.0-beta01"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.0-alpha03"
     // Adapter delegates
-    implementation 'com.hannesdorfmann:adapterdelegates4:4.3.0'
+    implementation 'com.hannesdorfmann:adapterdelegates4:4.3.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
     //RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'com.hannesdorfmann:adapterdelegates4:4.3.0'
+    implementation 'com.hannesdorfmann:adapterdelegates4:4.3.1'
     //Moshi
-    def moshiVersion = '1.12.0'
+    def moshiVersion = '1.13.0'
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
@@ -80,13 +80,13 @@ dependencies {
     def retrofitVersion = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
     //AppAuth
-    implementation 'net.openid:appauth:0.10.0'
+    implementation 'net.openid:appauth:0.11.1'
     //Datastore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
     //RoomDao
-    def room_version = "2.3.0"
+    def room_version = '2.4.2'
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
