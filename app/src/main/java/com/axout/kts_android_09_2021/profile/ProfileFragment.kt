@@ -28,7 +28,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun bindViewModel() {
-        (dataModel.firstname.value + " " + dataModel.lastname.value).also { binding.tvAuthor.text = it }
+        val name = dataModel.firstname.value
+        val lastname = dataModel.lastname.value
+        if (name.isNullOrEmpty() || lastname.isNullOrEmpty()) {
+            binding.tvAuthor.text = getString(R.string.author)
+        } else {
+            ("$name $lastname").also { binding.tvAuthor.text = it }
+        }
 
         Glide.with(this)
             .load(dataModel.profile.value)
